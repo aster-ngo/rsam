@@ -1,6 +1,7 @@
 $(document).ready(function() {
+    
     $('a.dialog-window').click(function() {
-        console.log("login");
+
         //lấy giá trị thuộc tính href - chính là phần tử "#dialog-box"
         var dialogBox = $(this).attr('href');
 
@@ -18,7 +19,7 @@ $(document).ready(function() {
     $(document).on('click', "a.close, #over", function() { 
         $('#over, .dialog, .dialog-shopping-card').fadeOut(300 , function() {
             $('#over').remove();  
-            $('#name, #email, #password, #password_confirmation').text = "";
+             // $('#email_login, #password_login, #name_register, #email_register, #password_register, #password_confirmation_register').val('');
         }); 
         return false;
     });

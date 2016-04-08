@@ -121,8 +121,9 @@ a, a:visited, a:active{
 .submit-button{
     display: inline-block;
     padding: auto;
-    margin: 20px 110px;
+    margin: 40px 110px;
     width: 150px;
+    margin-top: 20px;
 }
 		
 		

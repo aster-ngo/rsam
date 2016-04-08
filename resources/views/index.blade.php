@@ -92,25 +92,15 @@
         <div id="dialog-login-box" class="dialog">
             <p class="dialog_title"> Đăng nhập</p> <br /><br />
             <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
-            @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
             <form method="post" id="form-login" class="login-content" action="{{ url('/auth/login') }}" role="form" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <label class="email">
                 <span>Email:</span>
-                <input id="email" name="email" value="duongnd@gmail.com" type="email" autocomplete="on" placeholder="example@gmail.com">
+                <input id="email_login" name="email_login" type="email" autocomplete="on" placeholder="example@gmail.com">
                 </label><br/>
                 <label class="password">
                 <span>Mật khẩu:</span>
-                <input id="password" name="password" value="123456" type="password" placeholder="Mật khẩu">
+                <input id="password_login" name="password_login" type="password" placeholder="Mật khẩu">
                 </label>
 
                 <button class="button submit-button" type="submit">Đăng nhập</button>
@@ -132,23 +122,23 @@
             <form method="post" id="form-register" class="login-content" action="{{ url('/auth/register') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="role" value="1">
-                <label class="email">
-                <span>Họ tên:</span><input id="name" name="name" value="DuongND" type="text" autocomplete="on" placeholder="Họ và tên">
+                <label class="name">
+                <span>Họ tên:</span><input id="name_register" name="name_register" type="text" autocomplete="on" placeholder="Họ và tên">
                 </label><br />
 	            <label class="email">
-	            <span>Email:</span><input id="email" name="email" value="duongnd@gmail.com" type="email" autocomplete="on" placeholder="example@gmail.com">
+	            <span>Email:</span><input id="email_register" name="email_register" type="email" autocomplete="on" placeholder="example@gmail.com">
 	            </label><br />
 	            <label class="password">
-	            <span>Mật khẩu:</span><input id="password" name="password" value="123456" type="password" placeholder="Mật khẩu">
+	            <span>Mật khẩu:</span><input id="password_register" name="password_register" type="password" placeholder="Mật khẩu">
 	            </label><br />
 	            <label class="password">
-	            <span>Gõ lại mật khẩu:</span><input id="password_confirmation" name="password_confirmation" value="123456" type="password" placeholder="Gõ lại mật khẩu">
+	            <span>Gõ lại mật khẩu:</span><input id="password_confirmation_register" name="password_confirmation_register" type="password" placeholder="Gõ lại mật khẩu">
 	            </label><br />
 	            <button class="button submit-button" type="submit">Đăng ký</button>
             </form>
         </div><!-- end div logout-box -->
 
-        <!-- start div shopping-card -->
+        <!-- start div shopping-card -->    
         <div id="dialog-shopping-card-box" class="dialog-shopping-card">
             <p class="dialog_title"> Giỏ hàng</p> <br /><br />
             <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
@@ -207,11 +197,12 @@
             </div>
         </div><!-- end div shopping-card -->
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ asset('public/js/dialog.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/jquery.pwstabs.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/jquery.pwstabs.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/dialog.js') }}"></script>
+        
 
         <script  type="text/javascript">
             jQuery(document).ready(function ($) {
@@ -219,67 +210,67 @@
 
             });
         </script>
-        <script type="text/javascript">
 
-            $("#form-register").validate({
-            	rules:{
-                    name:{
-                        required: true
-                    },
-            		email:{
-            			required: true,
-            			email: true
-            		},
-            		password:{
-            			required: true,
-            			minlength: 6
-            		},
-            		password_confirmation:{
-                        required: true,
-            			equalTo: "#password"
-            		}
-            	},
-            	messages:{
-                    name:{
-                        required: "Vui lòng nhập họ tên.",
-                    },
-            		email:{
-            			required: "Vui lòng nhập Email.",
-            			email: "Email không đúng định dạng."
-            		},
-            		password:{
-            			required: "Vui lòng nhập mật khẩu.",
-            			minlength: "Mật khẩu tối thiếu 6 ký tự."
-            		},
-            		password_confirmation:{
-                        required: "Vui lòng nhập mật khẩu.",
-            			equalTo: "Mật khẩu xác nhận không đúng."
-            		}
-            	}
-            });
-            
+        <script type="text/javascript">
             $("#form-login").validate({
                 rules:{
-                    email:{
+                    email_login:{
                         required: true,
                         email: true
 
                     },
-                    password:{
+                    password_login:{
                         required: true,
                         minlength: 6
                     }
                 },
                 messages:{
-                    email:{
+                    email_login:{
                         required: "Vui lòng nhập Email.",
                         email: "Email không đúng định dạng."
                     },
-                    password:{
+                    password_login:{
                         required: "Vui lòng nhập mật khẩu.",
                         minlength: "Mật khẩu tối thiếu 6 ký tự."
                     }
                 }
+            });
+
+            $("#form-register").validate({
+            	rules:{
+                    name_register:{
+                        required: true
+                    },
+            		email_register:{
+            			required: true,
+            			email: true
+            		},
+            		password_register:{
+            			required: true,
+            			minlength: 6
+            		},
+            		password_confirmation_register:{
+                        required: true,
+            			equalTo: "#password_register"
+            		}
+            	},
+            	messages:{
+                    name_register:{
+                        required: "Vui lòng nhập họ tên.",
+                    },
+            		email_register:{
+            			required: "Vui lòng nhập Email.",
+            			email: "Email không đúng định dạng."
+            		},
+            		password_register:{
+            			required: "Vui lòng nhập mật khẩu.",
+            			minlength: "Mật khẩu tối thiếu 6 ký tự."
+            		},
+            		password_confirmation_register:{
+                        required: "Vui lòng nhập mật khẩu.",
+            			equalTo: "Mật khẩu xác nhận không đúng."
+            		}
+            	}
             });
 
         </script>

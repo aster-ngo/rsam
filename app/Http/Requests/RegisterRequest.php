@@ -22,17 +22,17 @@ class RegisterRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required',
-			'email' => 'required',
-			'password' => 'required',
+			'name_register' => 'required',
+			'email_register' => 'required',
+			'password_register' => 'required',
 		];
 	}
 
 	public function messages(){
 		return [
-			'name.required' => 'Vui nhập email của bạn.',
-			'email.required' => 'Vui nhập email của bạn.',
-			'password.required' => 'Vui lòng nhập mật khẩu.',
+			'name_register.required' => 'Vui nhập email của bạn.',
+			'email_register.required' => 'Vui nhập email của bạn.',
+			'password_register.required' => 'Vui lòng nhập mật khẩu.',
 		];
 	}
 }

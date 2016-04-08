@@ -22,15 +22,15 @@ class LoginRequest extends Request {
 	public function rules()
 	{
 		return [
-			'email' => 'required',
-			'password' => 'required',
+			'email_login' => 'required',
+			'password_login' => 'required',
 		];
 	}
 
 	public function messages(){
 		return [
-			'email.required' => 'Vui nhập email của bạn.',
-			'password.required' => 'Vui lòng nhập mật khẩu.',
+			'email_login.required' => 'Vui nhập email của bạn.',
+			'password_login.required' => 'Vui lòng nhập mật khẩu.',
 		];
 	}
 }
