@@ -46,8 +46,7 @@ class AuthController extends Controller {
 	}
 
 	public function postLogin(LoginRequest $request){
-		// return "Login success";
-		
+
 		if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
 			if(Auth::user()->role == 1){
 				return new RedirectResponse(url('/home'));
@@ -67,7 +66,7 @@ class AuthController extends Controller {
 
 	public function postRegister(RegisterRequest $request){
 
-		if (User::where('email', '=', $request->email)->count() <= 0) {
+		if ((User::where('email', '=', $request->email)->count() <= 0) && $request->password == $request->password_confirmation) {
 
 			User::create([
 				'name' => $request->name,
@@ -76,8 +75,24 @@ class AuthController extends Controller {
 				'role' => $request->role
 			]);
 
-			return new RedirectResponse(url('/home'));
-		}
-		return new RedirectResponse(url('/index.html'));
+			// Login
+
+			if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+				if(Auth::user()->role == 1){
+					return new RedirectResponse(url('/home'));
+				}else{
+					return new RedirectResponse(url('/admin'));
+				}
+				}else {
+					// return "Login error";
+					return new RedirectResponse(url('/index.html'));
+				}
+			}
+
+			return new RedirectResponse(url('/index.html'));
+	}
+
+	public function login($request){
+
 	}
 }
