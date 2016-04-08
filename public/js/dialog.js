@@ -18,6 +18,7 @@ $(document).ready(function() {
     $(document).on('click', "a.close, #over", function() { 
         $('#over, .dialog, .dialog-shopping-card').fadeOut(300 , function() {
             $('#over').remove();  
+            $('#name, #email, #password, #password_confirmation').text = "";
         }); 
         return false;
     });
