@@ -106,11 +106,11 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <label class="email">
                 <span>Email:</span>
-                <input id="email" name="email" type="email" autocomplete="on" placeholder="example@gmail.com">
+                <input id="email" name="email" value="duongnd@gmail.com" type="email" autocomplete="on" placeholder="example@gmail.com">
                 </label><br/>
                 <label class="password">
                 <span>Mật khẩu:</span>
-                <input id="password" name="password" type="password" placeholder="Mật khẩu">
+                <input id="password" name="password" value="123456" type="password" placeholder="Mật khẩu">
                 </label>
 
                 <button class="button submit-button" type="submit">Đăng nhập</button>
@@ -133,16 +133,16 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="role" value="1">
                 <label class="email">
-                <span>Họ tên:</span><input id="name" name="name" type="text" autocomplete="on" placeholder="Họ và tên">
+                <span>Họ tên:</span><input id="name" name="name" value="DuongND" type="text" autocomplete="on" placeholder="Họ và tên">
                 </label><br />
 	            <label class="email">
-	            <span>Email:</span><input id="email" name="email" type="email" autocomplete="on" placeholder="example@gmail.com">
+	            <span>Email:</span><input id="email" name="email" value="duongnd@gmail.com" type="email" autocomplete="on" placeholder="example@gmail.com">
 	            </label><br />
 	            <label class="password">
-	            <span>Mật khẩu:</span><input id="password" name="password" type="text" placeholder="Mật khẩu">
+	            <span>Mật khẩu:</span><input id="password" name="password" value="123456" type="password" placeholder="Mật khẩu">
 	            </label><br />
 	            <label class="password">
-	            <span>Gõ lại mật khẩu:</span><input id="password_confirmation" name="password_confirmation" type="text" placeholder="Gõ lại mật khẩu">
+	            <span>Gõ lại mật khẩu:</span><input id="password_confirmation" name="password_confirmation" value="123456" type="password" placeholder="Gõ lại mật khẩu">
 	            </label><br />
 	            <button class="button submit-button" type="submit">Đăng ký</button>
             </form>
@@ -207,11 +207,11 @@
             </div>
         </div><!-- end div shopping-card -->
 
-        <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="{{ asset('public/js/dialog.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/jquery.pwstabs.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
-        <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
         <script  type="text/javascript">
             jQuery(document).ready(function ($) {
