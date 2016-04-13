@@ -1,0 +1,1 @@
+Nhấn vào vào liên kết sau đây để thay đổi mật khẩu: <?php echo e(url('mat-khau/dat-lai/'.$token)); ?>

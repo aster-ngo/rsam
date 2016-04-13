@@ -1,0 +1,33 @@
+<?php $__env->startSection('option'); ?>
+
+
+<div id="dialog-notify-box" class="dialog">
+    <p class="dialog_title"> Thông báo</p> <br /><br />
+    <a href="<?php echo e(url('index.html')); ?>" class="close"><img src="<?php echo e(asset('public/img/close.png')); ?>" class="img-close" title="Close Window" alt="Close" /></a>
+    <form method="post" id="form-login" class="login-content" role="form" style="height: 40px;">
+        <h4>Đăng ký không thành công.</h4>
+    </form>
+
+	<script type="text/javascript">		   
+	    setTimeout(function(){
+     	 window.location = "<?php echo e(url('index.html')); ?>";
+	   	}, 1000);
+	</script>
+
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#dialog-notify-box').fadeIn("slow");
+
+        // thêm phần tử id="over" vào cuối thẻ body
+        $('body').append('<div id="over"></div>');
+        $('#over').fadeIn(300);
+	});
+</script>
+
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

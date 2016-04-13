@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/pwstabs.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/table.css') }}">
 
+        <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
+
     </head>
     <body>
         
@@ -1007,6 +1009,9 @@
             &copy; 2016 - Copy right by DuongND
         </div><!-- footer -->
 
+
+        @yield('option')
+
         <!-- start div login-box -->
         <div id="dialog-login-box" class="dialog">
             <p class="dialog_title"> Đăng nhập</p> <br /><br />
@@ -1023,8 +1028,9 @@
                 </label>
 
                 <button class="button submit-button" type="submit" style="margin-left: 0px;" >Đăng nhập</button>
-                <span style="margin-top: -35px;margin-bottom: 30px;margin-left: 170px;"> 
-                <a class="forgot" href="#">Quên mật khẩu?</a>
+                <span style="margin-top: -40px;margin-bottom: 30px;margin-left: 170px;text-decoration: underline;"> 
+                <!-- <a class="reset-password" href="dialog-reset-password">Quên mật khẩu?</a> -->
+                <a href="#dialog-reset-box" class="reset-password">Quên mật khẩu</a>
                 </span><br /><br /> 
 
             </form>
@@ -1032,6 +1038,23 @@
                
         </div>
         
+        <!-- start div login-box -->
+        <div id="dialog-reset-box" class="dialog">
+            <p class="dialog_title"> Quên mật khẩu</p> <br /><br />
+            <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
+            <form method="post" id="form-reset-password" class="login-content" action="{{ url('reset-password') }}" role="form" >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <label class="email">
+                <span>Email:</span>
+                <input id="email_reset_password" name="email_reset_password" type="email" autocomplete="on" placeholder="example@gmail.com">
+                </label><br/>
+
+                <button class="button submit-button" type="submit" style="margin-bottom: 40px;margin-top: 5px;" >Gửi mail</button>
+                
+
+            </form>
+        </div> <!-- end div login-box -->
+
 
         <!-- start div logout-box -->
         <div id="dialog-logout-box" class="dialog">
@@ -1116,7 +1139,6 @@
             </div>
         </div><!-- end div shopping-card -->
 
-        <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/jquery.pwstabs.js') }}"></script>
@@ -1151,6 +1173,21 @@
                     password_login:{
                         required: "Vui lòng nhập mật khẩu.",
                         minlength: "Mật khẩu tối thiếu 6 ký tự."
+                    }
+                }
+            });
+
+            $("#form-reset-password").validate({
+                rules:{
+                    email_reset_password:{
+                        required: true,
+                        email: true,
+                    }
+                },
+                messages:{
+                    email_reset_password:{
+                        required: "Vui lòng nhập Email.",
+                        email: "Email không đúng định dạng.",
                     }
                 }
             });

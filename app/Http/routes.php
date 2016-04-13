@@ -24,6 +24,20 @@ Route::get('auth/logout', ['as'=>'logout_get','uses' => 'Auth\AuthController@get
 
 Route::post('auth/register', ['as'=>'register_post','uses' => 'Auth\AuthController@postRegister']);
 
+Route::post('reset-password', 'Auth\AuthController@sendMailReset');
+
+Route::get('/mat-khau/dat-lai/{token}', 'Auth\AuthController@getReset');
+Route::post('/mat-khau/dat-lai/{token}', 'Auth\AuthController@postReset');
+
+Route::get('notify-sucess', function(){
+	return view('notify.sucess');
+});
+
+Route::get('notify-error', function(){
+	return view('notify.error');
+});
+
+
 Route::get('index.html', function(){
 	if(Auth::guest()){
 		return view('index');

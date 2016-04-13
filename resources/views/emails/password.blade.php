@@ -1,1 +1,1 @@
-Click here to reset your password: {{ url('password/reset/'.$token) }}
+Nhấn vào vào liên kết sau đây để thay đổi mật khẩu: {{ url('mat-khau/dat-lai/'.$token) }}

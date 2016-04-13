@@ -4,7 +4,10 @@ use Auth;
 use App\Http\Controllers\Controller;	
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\User;
+
+use Mail, DB, Input;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -77,19 +80,51 @@ class AuthController extends Controller {
 
 			// Login
 
+			Mail::send('emails.welcome', array('name' => $request->name_register, 'email' => $request->email_register, 'password' => bcrypt($request->password_register)), function($message) {
+			    $message->to(Input::get('email_register'), "Duong Ngo")->subject('Chào mừng thành viên mới - RSAM');
+			});
+
 			if(Auth::attempt(['email' => $request->email_register, 'password' => $request->password_register])){
-				if(Auth::user()->role == 1){
-					return new RedirectResponse(url('/home'));
-				}else{
-					return new RedirectResponse(url('/admin'));
-				}
+				// if(Auth::user()->role == 1){
+					return new RedirectResponse(url('notify-sucess'));	
+				// }else{
+				// 	return new RedirectResponse(url('/admin'));
+				// }
 				}else {
 					// return "Login error";
-					return new RedirectResponse(url('/index.html'));
+					// return new RedirectResponse(url('/index.html'));
+					return new RedirectResponse(url('notify-error'));
 				}
-			}
 
-			return new RedirectResponse(url('/index.html'));
+			}
+	}
+
+	public function sendMailReset(ResetPasswordRequest $request){
+
+		// $email = Input::get('email_reset_password');
+
+		// echo $request->email_reset_password;
+
+		$user = DB::table('users')->where('email', $request->email_reset_password)->first();
+
+
+
+		Mail::send('emails.password', array('token' => $user->remember_token), function($message) {
+		    $message->to(Input::get('email_reset_password'), "Duong Ngo")->subject('Thay đổi mật khẩu!');
+		});
+		
+		return new RedirectResponse(url('/index.html'));
+	}
+
+	public function getReset(){
+		return view('users.reset');
+	}
+
+	public function postReset(ResetPasswordRequest $request){
+
+		DB::table('users')->where('email', '=', $request->email)->update(array('password' => bcrypt($request->password), 'remember_token' => $request->_token));
+
+		return new RedirectResponse(url('/index.html'));
 	}
 	
 }
