@@ -44,37 +44,768 @@
                         <div class="pws_example_mixed_content_left" id="form_search">
                             <input type="button" value="Chọn thuộc tính" class="button_title_feature" >
                                 <div class="table_form_feature">
-                                    <select class="custom_select_tag">
+                                    <select class="custom_select_tag" id="type_product">
                                         <option value="Dạng dữ liệu">Dạng dữ liệu</option>
                                         <option value="EOS">EOS</option>
                                         <option value="NPP">NPP</option>
 
                                     </select>
-                                    <select class="custom_select_tag">
+                                    <select class="custom_select_tag" id="platform" onclick="choose_platform();">
                                         <option value="Nền tảng">Nền tảng</option>
-                                        <option value="Aqua">Aqua</option>
-                                        <option value="Terra">Terra</option>
+                                        <option value="Aqua" id="Aqua">Aqua</option>
+                                        <option value="Terra" id="Terra">Terra</option>
                                     </select>
-                                    <select class="custom_select_tag">
+                                    <select class="custom_select_tag" id="level"onclick="choose_level();">
                                         <option value="Cấp độ sản phẩm">Cấp độ sản phẩm</option>
                                         <option value="Level 1A">Level 1A</option>
                                         <option value="Level 1B">Level 1B</option>
                                         <option value="Level 2">Level 2</option>
                                     </select>
-                                    <select class="custom_select_tag">
+
+
+                                    <select class="custom_select_tag" id="level1B">
                                         <option value="Loại sản phẩm">Loại sản phẩm</option>
-                                        <option value="MOD04">MOD04</option>
-                                        <option value="MOD06">MOD06</option>
-                                        <option value="MOD07">MOD07</option>
-                                        <option value="MOP10">MOD10</option>
-                                        <option value="MOD11">MOD11</option>
-                                        <option value="MOD13">MOD13</option>
-                                        <option value="MOD14">MOD14</option>
-                                        <option value="MOD29">MOD29</option>
-                                        <option value="MOD35">MOD35</option>
-                                        <option value="MODOC">MODOC</option>
-                                        <option value="MODCR">MODCR</option>
+                                        <option value="MOD01" id="MOD01">MOD01</option>
+                                        <option value="MYD01" id="MYD01">MYD01</option>
+                                        <option value="MOD021KM " id="MOD021KM">MOD021KM</option>
+                                        <option value="MOD02QKM" id="MOD02QKM">MOD02QKM</option>
+                                        <option value="MOD02HKM" id="MOD02HKM">MOD02HKM</option>
+                                        <option value="MOD02OBC" id="MOD02OBC">MOD02OBC</option>
+                                        <option value="AIRS_AIRS" id="AIRS_AIRS">AIRS_AIRS</option>
+                                        <option value="AIRS_VIS" id="AIRS_VIS">AIRS_VIS</option>
+                                        <option value="AIRS_MASU" id="AIRS_MASU">AIRS_MASU</option>
+                                        <option value="AIRS_HDF5" id="AIRS_HDF5">AIRS_HDF5</option>
+                                        <option value="MYD021" id="MYD021KM">MYD021KM</option>
+                                        <option value="MYD02OBC" id="MYD02OBC">MYD02OBC</option>
+                                        <option value="MYD02QKM" id="MYD02QKM">MYD02QKM</option>
+                                        <option value="MYD02HKM" id="MYD02HKM">MYD2HKM</option>
+                                        <option value="MYD03" id="MYD03">MYD03</option>
+                                        <option value="MOD03" id="MOD03">MOD03</option>
+                                        <option value="MOD04" id="MOD04">MOD04</option>
+                                        <option value="MOD06" id="MOD06">MOD06</option>
+                                        <option value="MOD07" id="MOD07">MOD07</option>
+                                        <option value="MOP10" id="MOD10">MOD10</option>
+                                        <option value="MOD11" id="MOD11">MOD11</option>
+                                        <option value="MOD13" id="MOD13">MOD13</option>
+                                        <option value="MOD14" id="MOD14">MOD14</option>
+                                        <option value="MOD29" id="MOD29">MOD29</option>
+                                        <option value="MOD35" id="MOD35">MOD35</option>
+                                        <option value="MODOC" id="MODOC">MODOC</option>
+                                        <option value="MODCR" id="MODCR">MODCR</option>
+                                        <option value="MYD04" id="MYD04">MYD04</option>
+                                        <option value="MYD06" id="MYD06">MYD06</option>
+                                        <option value="MYD07" id="MYD07">MYD07</option>
+                                        <option value="MYD10" id="MYD10">MYD10</option>
+                                        <option value="MYD11" id="MYD11">MYD11</option>
+                                        <option value="MYD13" id="MYD13">MYD13</option>
+                                        <option value="MYD14" id="MYD14">MYD14</option>
+                                        <option value="MYD29" id="MYD29">MYD29</option>
+                                        <option value="MYD35" id="MYD35">MYD35</option>
+                                        <option value="MYDOC" id="MYDOC">MYDOC</option>
+                                        <option value="MYDCR" id="MYDCR">MYDCR</option>
                                     </select>
+                                    <script language="JavaScript">
+                                        function choose_level(){
+                                            var x = document.getElementById('platform');
+                                                var i = x.selectedIndex;
+                                                var platform=x.options[i].text;
+                                            var y = document.getElementById('level');
+                                                var j=y.selectedIndex;
+                                                var level=y.options[j].text;
+                                            if (level=='Level 1A'){
+                                                    document.getElementById('MYD01').style.display='inline';
+                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                            }
+                                            if (level=='Level 1B'){
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='inline';
+                                                    document.getElementById('MOD02QKM').style.display='inline';
+                                                    document.getElementById('MOD02HKM').style.display='inline';
+                                                    document.getElementById('MOD02OBC').style.display='inline';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='inline';
+                                                    document.getElementById('MYD02QKM').style.display='inline';
+                                                    document.getElementById('MYD02HKM').style.display='inline';
+                                                    document.getElementById('MYD02OBC').style.display='inline';
+                                                    document.getElementById('MYD03').style.display='inline';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='inline';
+                                                    document.getElementById('AIRS_MASU').style.display='inline';
+                                                    document.getElementById('AIRS_VIS').style.display='inline';
+                                                    document.getElementById('AIRS_HDF5').style.display='inline';
+                                            }
+                                            if (level=='Level 2'){
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='inline';
+                                                    document.getElementById('MOD04').style.display='inline';
+                                                    document.getElementById('MOD06').style.display='inline';
+                                                    document.getElementById('MOD07').style.display='inline';
+                                                    document.getElementById('MOD10').style.display='inline';
+                                                    document.getElementById('MOD11').style.display='inline';
+                                                    document.getElementById('MOD13').style.display='inline';
+                                                    document.getElementById('MOD14').style.display='inline';
+                                                    document.getElementById('MOD29').style.display='inline';
+                                                    document.getElementById('MOD35').style.display='inline';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='inline';
+                                                    document.getElementById('MYD04').style.display='inline';
+                                                    document.getElementById('MYD06').style.display='inline';
+                                                    document.getElementById('MYD07').style.display='inline';
+                                                    document.getElementById('MYD10').style.display='inline';
+                                                    document.getElementById('MYD11').style.display='inline';
+                                                    document.getElementById('MYD13').style.display='inline';
+                                                    document.getElementById('MYD14').style.display='inline';
+                                                    document.getElementById('MYD29').style.display='inline';
+                                                    document.getElementById('MYD35').style.display='inline';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                            }
+                                            if (platform=='Aqua'){
+                                                if (level=='Level 1A'){
+                                                    document.getElementById('MYD01').style.display='inline';
+                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                                }
+                                                else if(level=='Level 1B'){
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+
+                                                    document.getElementById('AIRS_AIRS').style.display='inline';
+                                                    document.getElementById('AIRS_MASU').style.display='inline';
+                                                    document.getElementById('AIRS_VIS').style.display='inline';
+                                                    document.getElementById('AIRS_HDF5').style.display='inline';
+                                                    document.getElementById('MYDOC').style.display='inline';
+                                                    document.getElementById('MYDCR').style.display='inline';
+                                                    document.getElementById('MYD021KM').style.display='inline';
+                                                    document.getElementById('MYD02QKM').style.display='inline';
+                                                    document.getElementById('MYD02HKM').style.display='inline';
+                                                    document.getElementById('MYD02OBC').style.display='inline';
+                                                }
+                                                else if(level=='Level 2'){
+                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('MOD021KM').style.display='none';
+                                                        document.getElementById('MOD02QKM').style.display='none';
+                                                        document.getElementById('MOD02HKM').style.display='none';
+                                                        document.getElementById('MOD02OBC').style.display='none';
+                                                        document.getElementById('MOD03').style.display='none';
+                                                        document.getElementById('MOD04').style.display='none';
+                                                        document.getElementById('MOD06').style.display='none';
+                                                        document.getElementById('MOD07').style.display='none';
+                                                        document.getElementById('MOD10').style.display='none';
+                                                        document.getElementById('MOD11').style.display='none';
+                                                        document.getElementById('MOD13').style.display='none';
+                                                        document.getElementById('MOD14').style.display='none';
+                                                        document.getElementById('MOD29').style.display='none';
+                                                        document.getElementById('MOD35').style.display='none';
+                                                        document.getElementById('MODOC').style.display='none';
+                                                        document.getElementById('MODCR').style.display='none';
+                                                        document.getElementById('AIRS_AIRS').style.display='none';
+                                                        document.getElementById('AIRS_MASU').style.display='none';
+                                                        document.getElementById('AIRS_VIS').style.display='none';
+                                                        document.getElementById('AIRS_HDF5').style.display='none';
+                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('MYD03').style.display='none';
+                                                        document.getElementById('MYD021KM').style.display='none';
+                                                        document.getElementById('MYD02QKM').style.display='none';
+                                                        document.getElementById('MYD02HKM').style.display='none';
+                                                        document.getElementById('MYD02OBC').style.display='none';
+                                                        document.getElementById('MYDOC').style.display='none';
+                                                        document.getElementById('MYDCR').style.display='none';
+                                                        document.getElementById('MYD04').style.display='inline';
+                                                        document.getElementById('MYD06').style.display='inline';
+                                                        document.getElementById('MYD07').style.display='inline';
+                                                        document.getElementById('MYD10').style.display='inline';
+                                                        document.getElementById('MYD11').style.display='inline';
+                                                        document.getElementById('MYD13').style.display='inline';
+                                                        document.getElementById('MYD14').style.display='inline';
+                                                        document.getElementById('MYD29').style.display='inline';
+                                                        document.getElementById('MYD35').style.display='inline';
+                                                }
+                                            }else if(platform=='Terra'){
+                                                if (level=='Level 1A'){
+                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                                }
+                                                else if (level=='Level 1B'){
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('MOD021KM').style.display='inline';
+                                                    document.getElementById('MOD02QKM').style.display='inline';
+                                                    document.getElementById('MOD02HKM').style.display='inline';
+                                                    document.getElementById('MOD02OBC').style.display='inline';
+                                                }
+                                                else if (level=='Level 2'){
+                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('MYD021KM').style.display='none';
+                                                        document.getElementById('MYD02QKM').style.display='none';
+                                                        document.getElementById('MYD02HKM').style.display='none';
+                                                        document.getElementById('MYD02OBC').style.display='none';
+                                                        document.getElementById('MYD03').style.display='none';
+                                                        document.getElementById('MYD04').style.display='none';
+                                                        document.getElementById('MYD06').style.display='none';
+                                                        document.getElementById('MYD07').style.display='none';
+                                                        document.getElementById('MYD10').style.display='none';
+                                                        document.getElementById('MYD11').style.display='none';
+                                                        document.getElementById('MYD13').style.display='none';
+                                                        document.getElementById('MYD14').style.display='none';
+                                                        document.getElementById('MYD29').style.display='none';
+                                                        document.getElementById('MYD35').style.display='none';
+                                                        document.getElementById('MYDOC').style.display='none';
+                                                        document.getElementById('MYDCR').style.display='none';
+                                                        document.getElementById('AIRS_AIRS').style.display='none';
+                                                        document.getElementById('AIRS_MASU').style.display='none';
+                                                        document.getElementById('AIRS_VIS').style.display='none';
+                                                        document.getElementById('AIRS_HDF5').style.display='none';
+                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('MOD03').style.display='none';
+                                                        document.getElementById('MOD021KM').style.display='none';
+                                                        document.getElementById('MOD02QKM').style.display='none';
+                                                        document.getElementById('MOD02HKM').style.display='none';
+                                                        document.getElementById('MOD02OBC').style.display='none';
+                                                        document.getElementById('MODOC').style.display='none';
+                                                        document.getElementById('MODCR').style.display='none';
+                                                        document.getElementById('MOD04').style.display='inline';
+                                                        document.getElementById('MOD06').style.display='inline';
+                                                        document.getElementById('MOD07').style.display='inline';
+                                                        document.getElementById('MOD10').style.display='inline';
+                                                        document.getElementById('MOD11').style.display='inline';
+                                                        document.getElementById('MOD13').style.display='inline';
+                                                        document.getElementById('MOD14').style.display='inline';
+                                                        document.getElementById('MOD29').style.display='inline';
+                                                        document.getElementById('MOD35').style.display='inline';
+                                                }
+                                            }
+                                        }
+                                        function choose_platform(){
+                                            var x = document.getElementById('platform');
+                                                var i = x.selectedIndex;
+                                                var platform=x.options[i].text;
+                                            var y = document.getElementById('level');
+                                                var j=y.selectedIndex;
+                                                var level=y.options[j].text;
+                                            if (platform =='Aqua'){
+                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('MYD01').style.display='inline';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='inline';
+                                                    document.getElementById('MYD02QKM').style.display='inline';
+                                                    document.getElementById('MYD02HKM').style.display='inline';
+                                                    document.getElementById('MYD02OBC').style.display='inline';
+                                                    document.getElementById('MYD03').style.display='inline';
+                                                    document.getElementById('MYD04').style.display='inline';
+                                                    document.getElementById('MYD06').style.display='inline';
+                                                    document.getElementById('MYD07').style.display='inline';
+                                                    document.getElementById('MYD10').style.display='inline';
+                                                    document.getElementById('MYD11').style.display='inline';
+                                                    document.getElementById('MYD13').style.display='inline';
+                                                    document.getElementById('MYD14').style.display='inline';
+                                                    document.getElementById('MYD29').style.display='inline';
+                                                    document.getElementById('MYD35').style.display='inline';
+                                                    document.getElementById('MYDOC').style.display='inline';
+                                                    document.getElementById('MYDCR').style.display='inline';
+                                                    document.getElementById('AIRS_AIRS').style.display='inline';
+                                                    document.getElementById('AIRS_MASU').style.display='inline';
+                                                    document.getElementById('AIRS_VIS').style.display='inline';
+                                                    document.getElementById('AIRS_HDF5').style.display='inline';
+                                            }
+                                            if (platform=='Terra'){
+                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='inline';
+                                                    document.getElementById('MOD02QKM').style.display='inline';
+                                                    document.getElementById('MOD02HKM').style.display='inline';
+                                                    document.getElementById('MOD02OBC').style.display='inline';
+                                                    document.getElementById('MOD03').style.display='inline';
+                                                    document.getElementById('MOD04').style.display='inline';
+                                                    document.getElementById('MOD06').style.display='inline';
+                                                    document.getElementById('MOD07').style.display='inline';
+                                                    document.getElementById('MOD10').style.display='inline';
+                                                    document.getElementById('MOD11').style.display='inline';
+                                                    document.getElementById('MOD13').style.display='inline';
+                                                    document.getElementById('MOD14').style.display='inline';
+                                                    document.getElementById('MOD29').style.display='inline';
+                                                    document.getElementById('MOD35').style.display='inline';
+                                                    document.getElementById('MODOC').style.display='inline';
+                                                    document.getElementById('MODCR').style.display='inline';
+                                                    document.getElementById('MYD021KM').style.display='inline';
+                                                    document.getElementById('MYD02QKM').style.display='inline';
+                                                    document.getElementById('MYD02HKM').style.display='inline';
+                                                    document.getElementById('MYD02OBC').style.display='inline';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                            }
+                                            if (level=='Level 1A'){
+                                                if (platform=='Aqua'){
+                                                    document.getElementById('MYD01').style.display='inline';
+                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                                }
+                                                else if (platform=='Terra'){
+                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                                }
+                                            else if(level=='Level 1B'){
+                                                if (platform=='Aqua'){
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('MOD021KM').style.display='none';
+                                                    document.getElementById('MOD02QKM').style.display='none';
+                                                    document.getElementById('MOD02HKM').style.display='none';
+                                                    document.getElementById('MOD02OBC').style.display='none';
+                                                    document.getElementById('MOD03').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('MODOC').style.display='none';
+                                                    document.getElementById('MODCR').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+
+                                                    document.getElementById('AIRS_AIRS').style.display='inline';
+                                                    document.getElementById('AIRS_MASU').style.display='inline';
+                                                    document.getElementById('AIRS_VIS').style.display='inline';
+                                                    document.getElementById('AIRS_HDF5').style.display='inline';
+                                                    document.getElementById('MYDOC').style.display='inline';
+                                                    document.getElementById('MYDCR').style.display='inline';
+                                                    document.getElementById('MYD021KM').style.display='inline';
+                                                    document.getElementById('MYD02QKM').style.display='inline';
+                                                    document.getElementById('MYD02HKM').style.display='inline';
+                                                    document.getElementById('MYD02OBC').style.display='inline';
+                                                }
+                                                else if (platform=='Terra'){
+                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('MYD021KM').style.display='none';
+                                                    document.getElementById('MYD02QKM').style.display='none';
+                                                    document.getElementById('MYD02HKM').style.display='none';
+                                                    document.getElementById('MYD02OBC').style.display='none';
+                                                    document.getElementById('MYD03').style.display='none';
+                                                    document.getElementById('MYD04').style.display='none';
+                                                    document.getElementById('MYD06').style.display='none';
+                                                    document.getElementById('MYD07').style.display='none';
+                                                    document.getElementById('MYD10').style.display='none';
+                                                    document.getElementById('MYD11').style.display='none';
+                                                    document.getElementById('MYD13').style.display='none';
+                                                    document.getElementById('MYD14').style.display='none';
+                                                    document.getElementById('MYD29').style.display='none';
+                                                    document.getElementById('MYD35').style.display='none';
+                                                    document.getElementById('MYDOC').style.display='none';
+                                                    document.getElementById('MYDCR').style.display='none';
+                                                    document.getElementById('MOD04').style.display='none';
+                                                    document.getElementById('MOD06').style.display='none';
+                                                    document.getElementById('MOD07').style.display='none';
+                                                    document.getElementById('MOD10').style.display='none';
+                                                    document.getElementById('MOD11').style.display='none';
+                                                    document.getElementById('MOD13').style.display='none';
+                                                    document.getElementById('MOD14').style.display='none';
+                                                    document.getElementById('MOD29').style.display='none';
+                                                    document.getElementById('MOD35').style.display='none';
+                                                    document.getElementById('AIRS_AIRS').style.display='none';
+                                                    document.getElementById('AIRS_MASU').style.display='none';
+                                                    document.getElementById('AIRS_VIS').style.display='none';
+                                                    document.getElementById('AIRS_HDF5').style.display='none';
+                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('MOD021KM').style.display='inline';
+                                                    document.getElementById('MOD02QKM').style.display='inline';
+                                                    document.getElementById('MOD02HKM').style.display='inline';
+                                                    document.getElementById('MOD02OBC').style.display='inline';
+                                                }
+                                            }else if (level=='Level 2'){
+                                                if (platform=='Aqua'){
+                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('MOD021KM').style.display='none';
+                                                        document.getElementById('MOD02QKM').style.display='none';
+                                                        document.getElementById('MOD02HKM').style.display='none';
+                                                        document.getElementById('MOD02OBC').style.display='none';
+                                                        document.getElementById('MOD03').style.display='none';
+                                                        document.getElementById('MOD04').style.display='none';
+                                                        document.getElementById('MOD06').style.display='none';
+                                                        document.getElementById('MOD07').style.display='none';
+                                                        document.getElementById('MOD10').style.display='none';
+                                                        document.getElementById('MOD11').style.display='none';
+                                                        document.getElementById('MOD13').style.display='none';
+                                                        document.getElementById('MOD14').style.display='none';
+                                                        document.getElementById('MOD29').style.display='none';
+                                                        document.getElementById('MOD35').style.display='none';
+                                                        document.getElementById('MODOC').style.display='none';
+                                                        document.getElementById('MODCR').style.display='none';
+                                                        document.getElementById('AIRS_AIRS').style.display='none';
+                                                        document.getElementById('AIRS_MASU').style.display='none';
+                                                        document.getElementById('AIRS_VIS').style.display='none';
+                                                        document.getElementById('AIRS_HDF5').style.display='none';
+                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('MYD03').style.display='none';
+                                                        document.getElementById('MYD021KM').style.display='none';
+                                                        document.getElementById('MYD02QKM').style.display='none';
+                                                        document.getElementById('MYD02HKM').style.display='none';
+                                                        document.getElementById('MYD02OBC').style.display='none';
+                                                        document.getElementById('MYDOC').style.display='none';
+                                                        document.getElementById('MYDCR').style.display='none';
+                                                        document.getElementById('MYD04').style.display='inline';
+                                                        document.getElementById('MYD06').style.display='inline';
+                                                        document.getElementById('MYD07').style.display='inline';
+                                                        document.getElementById('MYD10').style.display='inline';
+                                                        document.getElementById('MYD11').style.display='inline';
+                                                        document.getElementById('MYD13').style.display='inline';
+                                                        document.getElementById('MYD14').style.display='inline';
+                                                        document.getElementById('MYD29').style.display='inline';
+                                                        document.getElementById('MYD35').style.display='inline';
+                                                }
+                                                else if (platform=='Terra'){
+                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('MYD021KM').style.display='none';
+                                                        document.getElementById('MYD02QKM').style.display='none';
+                                                        document.getElementById('MYD02HKM').style.display='none';
+                                                        document.getElementById('MYD02OBC').style.display='none';
+                                                        document.getElementById('MYD03').style.display='none';
+                                                        document.getElementById('MYD04').style.display='none';
+                                                        document.getElementById('MYD06').style.display='none';
+                                                        document.getElementById('MYD07').style.display='none';
+                                                        document.getElementById('MYD10').style.display='none';
+                                                        document.getElementById('MYD11').style.display='none';
+                                                        document.getElementById('MYD13').style.display='none';
+                                                        document.getElementById('MYD14').style.display='none';
+                                                        document.getElementById('MYD29').style.display='none';
+                                                        document.getElementById('MYD35').style.display='none';
+                                                        document.getElementById('MYDOC').style.display='none';
+                                                        document.getElementById('MYDCR').style.display='none';
+                                                        document.getElementById('AIRS_AIRS').style.display='none';
+                                                        document.getElementById('AIRS_MASU').style.display='none';
+                                                        document.getElementById('AIRS_VIS').style.display='none';
+                                                        document.getElementById('AIRS_HDF5').style.display='none';
+                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('MOD03').style.display='none';
+                                                        document.getElementById('MOD021KM').style.display='none';
+                                                        document.getElementById('MOD02QKM').style.display='none';
+                                                        document.getElementById('MOD02HKM').style.display='none';
+                                                        document.getElementById('MOD02OBC').style.display='none';
+                                                        document.getElementById('MODOC').style.display='none';
+                                                        document.getElementById('MODCR').style.display='none';
+                                                        document.getElementById('MOD04').style.display='inline';
+                                                        document.getElementById('MOD06').style.display='inline';
+                                                        document.getElementById('MOD07').style.display='inline';
+                                                        document.getElementById('MOD10').style.display='inline';
+                                                        document.getElementById('MOD11').style.display='inline';
+                                                        document.getElementById('MOD13').style.display='inline';
+                                                        document.getElementById('MOD14').style.display='inline';
+                                                        document.getElementById('MOD29').style.display='inline';
+                                                        document.getElementById('MOD35').style.display='inline';
+                                                }
+                                            }
+
+                                        }
+
+                                     }
+                                    </script>
                                 </div>
 
                                 <input type="button" value="Chọn thời gian" class="button_title_time" >

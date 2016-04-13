@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableEosMod021 extends Migration {
+class CreateTableEosMyd02obc extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateTableEosMod021 extends Migration {
 	 */
     public function up()
     {
-        Schema::create('eos.mod021', function (Blueprint $table) {
+        Schema::create('eos.myd02obc', function (Blueprint $table) {
             $table->increments('id');
             $table->string('filename',100);
             $table->string('path',100);
@@ -33,8 +33,7 @@ class CreateTableEosMod021 extends Migration {
 
     public function down()
     {
-        Schema::drop('eos.mod021');
+        Schema::drop('eos.myd02obc');
     }
-
 
 }
