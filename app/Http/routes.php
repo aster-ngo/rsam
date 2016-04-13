@@ -29,6 +29,11 @@ Route::post('reset-password', 'Auth\AuthController@sendMailReset');
 Route::get('/mat-khau/dat-lai/{token}', 'Auth\AuthController@getReset');
 Route::post('/mat-khau/dat-lai/{token}', 'Auth\AuthController@postReset');
 
+
+Route::get('notify-email', function(){
+	return view('notify.sendmail');
+});
+
 Route::get('notify-sucess', function(){
 	return view('notify.sucess');
 });

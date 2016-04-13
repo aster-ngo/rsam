@@ -113,7 +113,7 @@ class AuthController extends Controller {
 		    $message->to(Input::get('email_reset_password'), "Duong Ngo")->subject('Thay đổi mật khẩu!');
 		});
 		
-		return new RedirectResponse(url('/index.html'));
+		return new RedirectResponse(url('notify-email'));
 	}
 
 	public function getReset(){
