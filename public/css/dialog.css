@@ -14,7 +14,8 @@ a, a:visited, a:active{
     text-decoration:none;
 }
 .dialog-shopping-card{
-    background-color:#85B561;
+    /*background-color:#85B561;*/
+    background-color: #844CAF;
     height:570px;
     width:850px;
     font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -35,7 +36,7 @@ a, a:visited, a:active{
 /* lớp login - cửa sổ đăng nhập*/
 .dialog
 {
-    background-color:#85B561;
+    background-color:#844CAF; /*#85B561*/
     height:auto;
     width:450px;
     font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -86,7 +87,6 @@ a, a:visited, a:active{
     display: inline-block;
     min-width: 46px;
     text-align: center;
-    color: #444;
     font-size: 14px;
     font-weight: 700;
     height: 36px;
@@ -95,13 +95,14 @@ a, a:visited, a:active{
     border-radius: 4px;
     transition: all 0.218s ease 0s;
     border: 1px solid #DCDCDC;
-    background-color: #F5F5F5;
-    background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
     cursor: pointer;
+    background-color: #844CAF;
+    text-decoration: none;  
+    color: #fff5c3;
 }
 .button:hover{
-     border: 1px solid #DCDCDC;
-    text-decoration: none;
+    border: 1px solid #DCDCDC;
+    
     -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     box-shadow: 0 2px 2px rgba(0,0,0,0.1);
