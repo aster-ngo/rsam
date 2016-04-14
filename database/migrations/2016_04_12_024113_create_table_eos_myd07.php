@@ -12,7 +12,7 @@ class CreateTableEosMyd07 extends Migration {
 	 */
     public function up()
     {
-        Schema::create('eos.mod07', function (Blueprint $table) {
+        Schema::create('eos.myd07', function (Blueprint $table) {
             $table->increments('id');
             $table->string('filename',100);
             $table->string('path',100);

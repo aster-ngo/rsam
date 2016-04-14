@@ -28,6 +28,13 @@
 <body class="page-header-fixed page-quick-sidebar-over-content">
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
+
+	<?php if(Auth::guest()): ?>
+		<script type="text/javascript">
+		    window.location = "<?php echo e(url('index.html')); ?>";
+		</script>
+	<?php endif; ?>
+
 	<!-- BEGIN HEADER INNER -->
 	<div class="page-header-inner">
 		<!-- BEGIN LOGO -->
