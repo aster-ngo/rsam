@@ -93,6 +93,7 @@ Route::get('admin/don-hang-yeu-cau', function(){
 Route::post('rs_result', 'DataController@result_data');
 Route::post('download_txt', 'MetadatadownloadController@download_txt');
 Route::post('download_png', 'MetadatadownloadController@download_png');
+Route::post('shopping-card', 'ShoppingCardController@shopping_card');
 
 
 

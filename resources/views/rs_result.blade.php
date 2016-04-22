@@ -42,78 +42,199 @@
 
                 <div data-pws-tab="tab1" data-pws-tab-name="Viễn thám" data-pws-tab-icon="fa-refresh fa-spin" >
                     <div class="pws_example_mixed_content_block">
-
-
-
+                    <form method="post" action="{{url('/shopping-card')}}">
                         <div class="pws_example_mixed_content_result" id="form_search">
                             <div class ="title_result">
-
-
-                                <div  style="margin-top: 15px;margin-left: 50px">
-                                    <span> Kết quả tìm được</span>
-                                </div>
+                            <div  style="margin-top: 15px;margin-left: 50px">
+                                <span> Kết quả tìm được</span>
+                            </div>
                             </div>
                             <input type="checkbox" value="Chọn tất cả" style="margin-left: 20px" id="check" onclick="allchecked(this);">
                             <span>Chọn tất cả</span>
-                            <input type="submit" style="margin-left: 20px; margin-top: 20px ;border: 1px double black; width: 150px;height: 30px; background-color: white;box-shadow: 1px 1px 1px #888888;" value="Cho vào giỏ hàng" >
+                            <input type="submit" style="margin-left: 20px; margin-top: 20px ;border: 1px double black; width: 150px;height: 30px; background-color: white;box-shadow: 1px 1px 1px #888888;" value="Cho vào giỏ hàng">
+                             <script> var stt=0</script>
+                             <?php
+                                $stt=0;
+                             ?>
+
                             <div class="table_form_result">
-                            <?php
-                                $count=0;
-                            ?>
-                                        @foreach($result_data as $data):
-
-                                            <div class="table_form_one_result">
-                                                <a href="#"> <img src="{{$data->path}}.png"  style="background-color: #000000;float: left; z-index: 100px; width: 100px;height: 100px; margin-left: 5px;margin-top: 8px;"  ></a>
-                                            <div class="data_show">
-                                                <div class="name_product">
-                                                    <span style="font-size: 12px">{{$type_product}}</span>
-                                                </div>
-                                                <div class="time_product">
-                                                    <span>{{$data->aqstime}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="toolbar_result">
-                                                <div >
-                                                    <a href="#dialog-show-metadata" class="dialog-window toolbar_metadata">
-                                                    <input type="button" class=" toolbar_metadata_image"  style="background-color: white" >&nbsp;&nbsp;
-                                                    <span class="tooltip">Hiển thị metadata</span>
-                                                    </a>
-                                                </div>
-                                                <div >
-                                                    <a href="#dialog-show-download-png" class="dialog-window toolbar_download">
-                                                    <input type="button" class="toolbar_download_image" style="background-color: white">
-                                                    <span class="tooltip">Tải về png</span>
-                                                    </a>
-                                                </div>
-
-                                            </div>
-                                                <input type="checkbox" name="check_element"  style="float: left;margin-left: 20px;margin-top: 40px">
-                                            </div>
-
-                                        @endforeach
+                                @foreach($result_data as $data):
 
 
+                                <div class="table_form_one_result">
+                                    <a href="#" > <img src="{{$data->path}}.png"   name="show_image" onclick="showimage(this.id);" style="background-color: #000000;float: left; z-index: 100px; width: 100px;height: 100px; margin-left: 5px;margin-top: 8px;"  ></a>
+
+                                <div class="data_show">
+                                    <div class="name_product">
+                                        <span style="font-size: 12px">{{$type_product}}</span>
+                                    </div>
+                                    <div class="time_product">
+                                        <span >{{$data->aqstime}}</span>
+                                    </div>
+                                    <input type="hidden" name="type_product" id="type_product" value=" {{ $type_product  }}">
+                                    <input type="hidden" name="time_product" id="time_product" value="{{ $data->aqstime}}">
+                                    <input type="hidden" name="size_product" id="size_product" value=" {{ $data->size  }}">
+                                    <input type="hidden" name="name_product" id="name_product" value="{{ $data->filename }}">
+                                    <input type="hidden" name="eastbound"  value="{{ $data->east }}">
+                                    <input type="hidden" name="northbound"  value="{{ $data->north }}">
+                                    <input type="hidden" name="southbound"  value="{{ $data->south }}">
+                                    <input type="hidden" name="westbound"  value="{{ $data->west }}">
+                                    <input type="hidden" name="conner"  value="{{ $data->conner }}">
+                                    <input type="hidden" name="stt">
 
 
-                                <script language="javascript">
-                                    function allchecked(source){
-                                    checkboxes=document.getElementsByName('check_element');
-                                        if (document.getElementById('check').checked==true){
-                                         for(var i=0, n=checkboxes.length;i<n;i++) {
-                                            checkboxes[i].checked = source.checked;
-                                          }
-                                          }else{
-                                         for(var i=0, n=checkboxes.length;i<n;i++) {
-                                            checkboxes[i].checked = false;
-                                          }
+                                </div>
 
-                                    }
-                                    }
-                                </script>
+                                <div class="toolbar_result">
+                                    <div >
+                                        <a href="#dialog-show-metadata" class="dialog-window toolbar_metadata">
+                                        <input type="button" class=" toolbar_metadata_image"  style="background-color: white" >&nbsp;&nbsp;
+                                        <span class="tooltip">Hiển thị metadata</span>
+                                        </a>
+                                    </div>
+                                    <div >
+                                        <a href="#dialog-show-download-png" class="dialog-window toolbar_download">
+                                        <input type="button" class="toolbar_download_image" style="background-color: white">
+                                        <span class="tooltip">Tải về png</span>
+                                        </a>
+                                    </div>
+                                    <div class="toolbar_foot">
+
+                                        <input type="button" class=" toolbar_foot_image" name="foot"  style="background-color: white"  onclick="footMap(this);">&nbsp;&nbsp;
+                                        <span class="tooltip">Đánh dấu</span>
+
+                                    </div>
+                                    <input type="hidden" name="_token" value=" {{ csrf_token() }}">
+                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+
+                                </div>
+                                    <input type="checkbox" name="check_element" value="{{$data->filename}}" id="check_element"  style="float: left;margin-left: 20px;margin-top: 40px">
+                                </div>
+
+                                @endforeach
                             </div>
-                            <a href="index.html" ><input type="submit" style="margin-left: 20px; margin-top: 20px ;margin-bottom:20px;border: 1px double black; width: 80px;height: 30px; background-color: white" value="Quay lai"  ></a>
+                            <script>
 
-                          </div>
+                                      // This example creates a simple polygon representing the Bermuda Triangle.
+
+                                      stt++;
+                                      var id_stt=document.getElementsByName('show_image');
+                                      var eastbound_stt=document.getElementsByName('eastbound');
+                                      var northbound_stt=document.getElementsByName('northbound');
+                                      var southbound_stt=document.getElementsByName('southbound');
+                                      var westbound_stt=document.getElementsByName('westbound');
+                                      var conner_stt=document.getElementsByName('conner');
+                                      var foot_stt=document.getElementsByName('foot');
+                                      for (var i=stt-1,n=id_stt.length;i<n;i++){
+                                          id_stt[i].id=i;
+                                          }
+                                      for (var i=stt-1,n=eastbound_stt.length;i<n;i++){
+                                          eastbound_stt[i].id='eastbound['+i+']';
+
+                                          }
+                                      for (var i=stt-1,n=northbound_stt.length;i<n;i++){
+                                          northbound_stt[i].id='northbound['+i+']';
+
+                                          }
+                                      for (var i=stt-1,n=southbound_stt.length;i<n;i++){
+                                          southbound_stt[i].id='southbound['+i+']';
+                                          }
+                                      for (var i=stt-1,n=westbound_stt.length;i<n;i++){
+                                          westbound_stt[i].id='westbound['+i+']';
+
+                                          }
+                                      for (var i=stt-1,n=conner_stt.length;i<n;i++){
+                                          conner_stt[i].id='conner['+id+']';
+
+                                          }
+                                      for (var i=stt-1,n=foot_stt.length;i<n;i++){
+                                          foot_stt[i].id='foot['+id+']';
+
+                                          }
+                                      function footMap(id) {
+                                          var map = new google.maps.Map(document.getElementById('map'), {
+                                              zoom:3,
+                                              center: {lat: 24.886, lng: 120.268},
+                                              mapTypeId: google.maps.MapTypeId.TERRAIN
+                                          });
+
+                                          // Define the LatLng coordinates for the polygon's path.
+//                                          alert (id);
+                                          var triangleCoords = [
+                                              {lat: 34.0476715664287, lng: 105.703710021173},
+                                              {lat: 30.4483642384887, lng: 131.080224800376},
+                                              {lat: 3.77903764914157, lng: 123.05450489609},
+                                              {lat: 6.66834990288069, lng: 102.298819741454}
+                                          ];
+
+                                          // Construct the polygon.
+                                          var bermudaTriangle = new google.maps.Polygon({
+                                              paths: triangleCoords,
+                                              strokeColor: '#FF0000',
+                                              strokeOpacity: 0.8,
+                                              strokeWeight: 2,
+                                              fillColor: '#FF0000',
+                                              fillOpacity: 0.35
+                                          });
+
+                                          bermudaTriangle.setMap(map);
+                                      }
+                                       var historicalOverlay;
+
+                                          function showimage(id) {
+                                              var map = new google.maps.Map(document.getElementById('map'), {
+                                                  zoom: 3,
+                                                  center: {lat: 20, lng: 120.18}
+                                              });
+
+                                              var eastbound='eastbound['+id+']';
+                                              var northbound='northbound['+id+']';
+                                              var southbound='southbound['+id+']';
+                                              var westbound='westbound['+id+']';
+
+                                              var part=document.getElementById(id).getAttribute("src");
+
+                                              var east=parseFloat(document.getElementById(eastbound).value);
+                                              var north=parseFloat(document.getElementById(northbound).value);
+                                              var south=parseFloat(document.getElementById(southbound).value);
+                                              var west=parseFloat(document.getElementById(westbound).value);
+
+                                              var imageBounds = {
+                                                  north: north,
+                                                  south: south,
+                                                  east: east,
+                                                  west: west
+                                              };
+
+
+
+                                              historicalOverlay = new google.maps.GroundOverlay(
+                                                      part,
+                                                      imageBounds);
+                                              historicalOverlay.setMap(map);
+                                          }
+
+                                  </script>
+
+                            <script language="javascript">
+                            function allchecked(source){
+                            checkboxes=document.getElementsByName('check_element');
+                                if (document.getElementById('check').checked==true){
+                                 for(var i=0, n=checkboxes.length;i<n;i++) {
+                                    checkboxes[i].checked = source.checked;
+                                  }
+                                  }else{
+                                 for(var i=0, n=checkboxes.length;i<n;i++) {
+                                    checkboxes[i].checked = false;
+                                  }
+
+                                }
+                            }
+                            </script>
+                            <a href="index.html" ><input type="button" style="margin-left: 20px; margin-top: 20px ;margin-bottom:20px;border: 1px double black; width: 80px;height: 30px; background-color: white" value="Quay lai"  ></a>
+
+                        </div>
+                    </form>
 
 
                         <script language="javascript">
@@ -122,112 +243,8 @@
                         <div class="pws_example_mixed_content_right" >
                             <div style="width: 100%;height: 99%;border: 1px solid blue;margin-bottom: 10px;padding-top: 7px;background-color: white;">
                                 <div id="map" style="height: 100%;margin-top: -7px;"></div>
-                                <script>
-                                        // This example adds hide() and show() methods to a custom overlay's prototype.
-                                        // These methods toggle the visibility of the container <div>.
-                                        // Additionally, we add a toggleDOM() method, which attaches or detaches the
-                                        // overlay to or from the map.
-
-                                        var overlay;
-
-                                        USGSOverlay.prototype = new google.maps.OverlayView();
-
-                                        function initMap() {
-                                            var map = new google.maps.Map(document.getElementById('map'), {
-                                                zoom: 3,
-                                                center: {lat: 20, lng: 110},
-                                                mapTypeId: google.maps.MapTypeId.SATELLITE
-                                            });
-
-                                            var bounds = new google.maps.LatLngBounds(
-                                                    new google.maps.LatLng(34.0476715664287,105.703710021173),
-                                                    new google.maps.LatLng(30.4483642384887,131.080224800376));
-
-                                            // The photograph is courtesy of the U.S. Geological Survey.
-                                            var srcImage ='MOD04L2.A2015333.0254.006.2015333030251.png';
-
-                                            overlay = new USGSOverlay(bounds, srcImage, map);
-                                        }
-
-                                        /** @constructor */
-                                        function USGSOverlay(bounds, image, map) {
-
-                                            // Now initialize all properties.
-                                            this.bounds_ = bounds;
-                                            this.image_ = image;
-                                            this.map_ = map;
-
-                                            // Define a property to hold the image's div. We'll
-                                            // actually create this div upon receipt of the onAdd()
-                                            // method so we'll leave it null for now.
-                                            this.div_ = null;
-
-                                            // Explicitly call setMap on this overlay
-                                            this.setMap(map);
-                                        }
-
-                                        /**
-                                         * onAdd is called when the map's panes are ready and the overlay has been
-                                         * added to the map.
-                                         */
-                                        USGSOverlay.prototype.onAdd = function() {
-
-                                            var div = document.createElement('div');
-                                            div.style.border = 'none';
-                                            div.style.borderWidth = '0px';
-                                            div.style.position = 'absolute';
-
-                                            // Create the img element and attach it to the div.
-                                            var img = document.createElement('img');
-                                            img.src = this.image_;
-                                            img.style.width = '80%';
-                                            img.style.height = '80%';
-                                            img.style.backgroundColor='black';
-                                //            img.style.transform ='rotate('+10 +'deg)'
-
-                                            div.appendChild(img);
-
-                                            this.div_ = div;
-
-                                            // Add the element to the "overlayImage" pane.
-                                            var panes = this.getPanes();
-                                            panes.overlayImage.appendChild(this.div_);
-                                        };
-
-                                        USGSOverlay.prototype.draw = function() {
-
-                                            // We use the south-west and north-east
-                                            // coordinates of the overlay to peg it to the correct position and size.
-                                            // To do this, we need to retrieve the projection from the overlay.
-                                            var overlayProjection = this.getProjection();
-
-                                            // Retrieve the south-west and north-east coordinates of this overlay
-                                            // in LatLngs and convert them to pixel coordinates.
-                                            // We'll use these coordinates to resize the div.
-                                            var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-                                            var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
-                                //            document.write(sw);
-                                //            document.write(ne);
-
-                                            // Resize the image's div to fit the indicated dimensions.
-                                            var div = this.div_;
-                                            div.style.left = sw.x + 'px';
-                                            div.style.top = ne.y + 'px';
-                                            div.style.width = (ne.x - sw.x) + 'px';
-                                            div.style.height = (sw.y - ne.y) + 'px';
-
-                                        };
-
-
-                                        // Detach the map from the DOM via toggleDOM().
-                                        // Note that if we later reattach the map, it will be visible again,
-                                        // because the containing <div> is recreated in the overlay's onAdd() method.
-
-
-                                        google.maps.event.addDomListener(window, 'load', initMap);
-                                    </script>
                                 <script async defer
-                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPgZPImlcrZ5Wffcmglv6XmFQgaNbG1dI&callback=initMap">
+                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPgZPImlcrZ5Wffcmglv6XmFQgaNbG1dI">
                                 </script>
                             </div>
                             <div>
@@ -241,7 +258,6 @@
 
 
                 <div data-pws-tab="tab2" data-pws-tab-name="Khí tượng" data-pws-tab-icon="fa-child">
-
                     <!-- start pws_example_mixed_content_left -->
                     <div class="pws_example_mixed_content_left" >
 
@@ -355,14 +371,14 @@
                         <div class="table_form_feature" style="height: auto;background-color: white;border: 1px solid blue;"><br/><br/>
                            <label style="color: black;margin-left: 10px;">Min lat:</label>
                            <label style="color: black;margin-left: 10px;float: right;margin-right: 78px;">Max lat:</label><br/>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" ></input>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ></input><br/>
+                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" >
+                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ><br/>
                             <p style="margin-top: 20px;"></p>
 
                             <label style="color: black;margin-left: 10px;">Min lon:</label>
                            <label style="color: black;margin-left: 10px;float: right;margin-right: 78px;">Max lon:</label><br/>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" ></input>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ></input><br/>
+                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" >
+                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ><br/>
                             <p style="margin-top: 20px;"></p>
                         </div> <!-- end div 'không gian' -->
 
@@ -417,16 +433,6 @@
                             <img src="{{ asset('public/img/plot-example.png') }}" width="100%" height="100%">
                         </div>
                     </div> <!-- end pws_example_mixed_content_right -->
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -495,12 +501,12 @@
                         <tr >
                           <td style="font-size: 10px">Band hiển thị hiện tại</td>
                           <td style="font-size: 10px"><?php if($type_product=='MOD04')
-                                                        {
-                                                           echo "Aerosol_Optical_Depth_Land_And_Ocean";
-                                                        }else if($type_product=='MOD07'){
-                                                            echo "Skin_Temperature";
-                                                        }
-                                                        ?></td>
+                            {
+                               echo "Aerosol_Optical_Depth_Land_And_Ocean";
+                            }else if($type_product=='MOD07'){
+                                echo "Skin_Temperature";
+                            }
+                            ?></td>
                         </tr>
                         <tr>
                           <td style="font-size: 10px">Ngày sản xuất</td>
@@ -545,7 +551,7 @@
         <!--download png div-->
         @foreach($result_data as $meta):
             <div id="dialog-show-download-png" class="dialog">
-                <p class="dialog_title_metadata">Download </p> <br /><br />
+                <p class="dialog_title_metadata">Tải về </p> <br /><br />
                      <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
 
                     <form method="post" id="form-metadata" class="login-content" action="{{url ('/download_png') }}">
@@ -613,45 +619,24 @@
                 <table class="responstable">
                   <tbody>
                       <tr>
-                        <th>orderId</th>
+
                         <th>Thời gian</th>
-                        <th>Loại sản phẩm</span></th>
+                        <th>Loại sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Kích thước</th>
                         <th>Đặt hàng</th>
                       </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox"></td>
-                      </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox" ></td>
-                      </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox"></td>
-                      </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox"></td>
-                      </tr>
+
+                      {{--@foreach($shopping_data as $shopping):--}}
+                      {{--<tr>--}}
+                        {{--<td>{{$shopping->datetime}}</td>--}}
+                        {{--<td>{{$shopping->type_product}}</td>--}}
+                        {{--<td>{{$shopping->name_product}}</td>--}}
+                        {{--<td>{{$shopping->size}}</td>--}}
+
+                        {{--<td><input type="checkbox"></td>--}}
+                      {{--</tr>--}}
+                      {{--@endforeach--}}
 
                     </tbody>
                 </table>
@@ -717,24 +702,6 @@
 
             </form>
         </div> <!-- end div add-shopping-card-box -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
