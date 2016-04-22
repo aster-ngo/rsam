@@ -49,6 +49,7 @@ a, a:visited, a:active{
     left:50%;
     margin-left:-220px;
 }
+
 		
 .dialog_title 
 {
@@ -56,6 +57,13 @@ a, a:visited, a:active{
     font-size: 25px;
     padding:8px 0 5px 8px;
     text-align:left;
+}
+.dialog_title_metadata
+{
+    color:white;
+    font-size: 25px;
+    padding:8px 0 5px 8px;
+    text-align:center;
 }
 
 .login-content label {

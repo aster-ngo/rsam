@@ -42,7 +42,10 @@
 
                 <div data-pws-tab="tab1" data-pws-tab-name="Viễn thám" data-pws-tab-icon="fa-refresh fa-spin" >
                     <div class="pws_example_mixed_content_block">
-                        <div class="pws_example_mixed_content_left" id="form_search">
+                        <form method="post" action="{{url ('/rs_result')}}"   >
+                            <div class="pws_example_mixed_content_left" id="form_search">
+
+                            <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
                             <input type="button" value="Chọn thuộc tính" class="button_title_feature" >
                                 <div class="table_form_feature">
                                     <select class="custom_select_tag" id="type_product">
@@ -64,10 +67,10 @@
                                     </select>
 
 
-                                    <select class="custom_select_tag" id="level1B">
+                                    <select class="custom_select_tag" id="type_product" name="type_product">
                                         <option value="Loại sản phẩm">Loại sản phẩm</option>
-                                        <option value="MOD01" id="MOD01">MOD01</option>
-                                        <option value="MYD01" id="MYD01">MYD01</option>
+                                        <option value="MOD01" id="mod01">MOD01</option>
+                                        <option value="MYD01" id="myd01">MYD01</option>
                                         <option value="MOD021KM " id="MOD021KM">MOD021KM</option>
                                         <option value="MOD02QKM" id="MOD02QKM">MOD02QKM</option>
                                         <option value="MOD02HKM" id="MOD02HKM">MOD02HKM</option>
@@ -114,8 +117,8 @@
                                                 var j=y.selectedIndex;
                                                 var level=y.options[j].text;
                                             if (level=='Level 1A'){
-                                                    document.getElementById('MYD01').style.display='inline';
-                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('myd01').style.display='inline';
+                                                    document.getElementById('mod01').style.display='inline';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -154,8 +157,8 @@
                                                     document.getElementById('AIRS_HDF5').style.display='none';
                                             }
                                             if (level=='Level 1B'){
-                                                    document.getElementById('MYD01').style.display='none';
-                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='none';
+                                                    document.getElementById('mod01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='inline';
                                                     document.getElementById('MOD02QKM').style.display='inline';
                                                     document.getElementById('MOD02HKM').style.display='inline';
@@ -194,8 +197,8 @@
                                                     document.getElementById('AIRS_HDF5').style.display='inline';
                                             }
                                             if (level=='Level 2'){
-                                                    document.getElementById('MYD01').style.display='none';
-                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='none';
+                                                    document.getElementById('mod01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -235,8 +238,8 @@
                                             }
                                             if (platform=='Aqua'){
                                                 if (level=='Level 1A'){
-                                                    document.getElementById('MYD01').style.display='inline';
-                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='inline';
+                                                    document.getElementById('mod01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -275,8 +278,8 @@
                                                     document.getElementById('AIRS_HDF5').style.display='none';
                                                 }
                                                 else if(level=='Level 1B'){
-                                                    document.getElementById('MYD01').style.display='none';
-                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='none';
+                                                    document.getElementById('mod01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -315,7 +318,7 @@
                                                     document.getElementById('MYD02OBC').style.display='inline';
                                                 }
                                                 else if(level=='Level 2'){
-                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('mod01').style.display='none';
                                                         document.getElementById('MOD021KM').style.display='none';
                                                         document.getElementById('MOD02QKM').style.display='none';
                                                         document.getElementById('MOD02HKM').style.display='none';
@@ -336,7 +339,7 @@
                                                         document.getElementById('AIRS_MASU').style.display='none';
                                                         document.getElementById('AIRS_VIS').style.display='none';
                                                         document.getElementById('AIRS_HDF5').style.display='none';
-                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('myd01').style.display='none';
                                                         document.getElementById('MYD03').style.display='none';
                                                         document.getElementById('MYD021KM').style.display='none';
                                                         document.getElementById('MYD02QKM').style.display='none';
@@ -356,8 +359,8 @@
                                                 }
                                             }else if(platform=='Terra'){
                                                 if (level=='Level 1A'){
-                                                    document.getElementById('MOD01').style.display='inline';
-                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('mod01').style.display='inline';
+                                                    document.getElementById('myd01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -396,7 +399,7 @@
                                                     document.getElementById('AIRS_HDF5').style.display='none';
                                                 }
                                                 else if (level=='Level 1B'){
-                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='none';
                                                     document.getElementById('MYD021KM').style.display='none';
                                                     document.getElementById('MYD02QKM').style.display='none';
                                                     document.getElementById('MYD02HKM').style.display='none';
@@ -426,14 +429,14 @@
                                                     document.getElementById('AIRS_MASU').style.display='none';
                                                     document.getElementById('AIRS_VIS').style.display='none';
                                                     document.getElementById('AIRS_HDF5').style.display='none';
-                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('mod01').style.display='inline';
                                                     document.getElementById('MOD021KM').style.display='inline';
                                                     document.getElementById('MOD02QKM').style.display='inline';
                                                     document.getElementById('MOD02HKM').style.display='inline';
                                                     document.getElementById('MOD02OBC').style.display='inline';
                                                 }
                                                 else if (level=='Level 2'){
-                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('myd01').style.display='none';
                                                         document.getElementById('MYD021KM').style.display='none';
                                                         document.getElementById('MYD02QKM').style.display='none';
                                                         document.getElementById('MYD02HKM').style.display='none';
@@ -454,7 +457,7 @@
                                                         document.getElementById('AIRS_MASU').style.display='none';
                                                         document.getElementById('AIRS_VIS').style.display='none';
                                                         document.getElementById('AIRS_HDF5').style.display='none';
-                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('mod01').style.display='none';
                                                         document.getElementById('MOD03').style.display='none';
                                                         document.getElementById('MOD021KM').style.display='none';
                                                         document.getElementById('MOD02QKM').style.display='none';
@@ -482,8 +485,8 @@
                                                 var j=y.selectedIndex;
                                                 var level=y.options[j].text;
                                             if (platform =='Aqua'){
-                                                    document.getElementById('MOD01').style.display='none';
-                                                    document.getElementById('MYD01').style.display='inline';
+                                                    document.getElementById('mod01').style.display='none';
+                                                    document.getElementById('myd01').style.display='inline';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -522,8 +525,8 @@
                                                     document.getElementById('AIRS_HDF5').style.display='inline';
                                             }
                                             if (platform=='Terra'){
-                                                    document.getElementById('MOD01').style.display='inline';
-                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('mod01').style.display='inline';
+                                                    document.getElementById('myd01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='inline';
                                                     document.getElementById('MOD02QKM').style.display='inline';
                                                     document.getElementById('MOD02HKM').style.display='inline';
@@ -563,8 +566,8 @@
                                             }
                                             if (level=='Level 1A'){
                                                 if (platform=='Aqua'){
-                                                    document.getElementById('MYD01').style.display='inline';
-                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='inline';
+                                                    document.getElementById('mod01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -603,8 +606,8 @@
                                                     document.getElementById('AIRS_HDF5').style.display='none';
                                                 }
                                                 else if (platform=='Terra'){
-                                                    document.getElementById('MOD01').style.display='inline';
-                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('mod01').style.display='inline';
+                                                    document.getElementById('myd01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -644,8 +647,8 @@
                                                 }
                                             else if(level=='Level 1B'){
                                                 if (platform=='Aqua'){
-                                                    document.getElementById('MYD01').style.display='none';
-                                                    document.getElementById('MOD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='none';
+                                                    document.getElementById('mod01').style.display='none';
                                                     document.getElementById('MOD021KM').style.display='none';
                                                     document.getElementById('MOD02QKM').style.display='none';
                                                     document.getElementById('MOD02HKM').style.display='none';
@@ -684,7 +687,7 @@
                                                     document.getElementById('MYD02OBC').style.display='inline';
                                                 }
                                                 else if (platform=='Terra'){
-                                                    document.getElementById('MYD01').style.display='none';
+                                                    document.getElementById('myd01').style.display='none';
                                                     document.getElementById('MYD021KM').style.display='none';
                                                     document.getElementById('MYD02QKM').style.display='none';
                                                     document.getElementById('MYD02HKM').style.display='none';
@@ -714,7 +717,7 @@
                                                     document.getElementById('AIRS_MASU').style.display='none';
                                                     document.getElementById('AIRS_VIS').style.display='none';
                                                     document.getElementById('AIRS_HDF5').style.display='none';
-                                                    document.getElementById('MOD01').style.display='inline';
+                                                    document.getElementById('mod01').style.display='inline';
                                                     document.getElementById('MOD021KM').style.display='inline';
                                                     document.getElementById('MOD02QKM').style.display='inline';
                                                     document.getElementById('MOD02HKM').style.display='inline';
@@ -722,7 +725,7 @@
                                                 }
                                             }else if (level=='Level 2'){
                                                 if (platform=='Aqua'){
-                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('mod01').style.display='none';
                                                         document.getElementById('MOD021KM').style.display='none';
                                                         document.getElementById('MOD02QKM').style.display='none';
                                                         document.getElementById('MOD02HKM').style.display='none';
@@ -743,7 +746,7 @@
                                                         document.getElementById('AIRS_MASU').style.display='none';
                                                         document.getElementById('AIRS_VIS').style.display='none';
                                                         document.getElementById('AIRS_HDF5').style.display='none';
-                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('myd01').style.display='none';
                                                         document.getElementById('MYD03').style.display='none';
                                                         document.getElementById('MYD021KM').style.display='none';
                                                         document.getElementById('MYD02QKM').style.display='none';
@@ -762,7 +765,7 @@
                                                         document.getElementById('MYD35').style.display='inline';
                                                 }
                                                 else if (platform=='Terra'){
-                                                        document.getElementById('MYD01').style.display='none';
+                                                        document.getElementById('myd01').style.display='none';
                                                         document.getElementById('MYD021KM').style.display='none';
                                                         document.getElementById('MYD02QKM').style.display='none';
                                                         document.getElementById('MYD02HKM').style.display='none';
@@ -783,7 +786,7 @@
                                                         document.getElementById('AIRS_MASU').style.display='none';
                                                         document.getElementById('AIRS_VIS').style.display='none';
                                                         document.getElementById('AIRS_HDF5').style.display='none';
-                                                        document.getElementById('MOD01').style.display='none';
+                                                        document.getElementById('mod01').style.display='none';
                                                         document.getElementById('MOD03').style.display='none';
                                                         document.getElementById('MOD021KM').style.display='none';
                                                         document.getElementById('MOD02QKM').style.display='none';
@@ -812,163 +815,78 @@
                                 <input type="button" value="Chọn thời gian" class="button_title_time" >
                                 <div class="table_form_time">
                                     <label id="level" style="color: black;margin-left: 10px;">Thời gian từ:</label> <br/>
-                                    <input type="date" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br>
+                                    <input type="date" id="date_from" name="date_from" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br>
 
                                     <label id="level" style="color: black;margin-left: 10px;">Thời gian đến:</label> <br/>
-                                    <input type="date" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br>
+                                    <input type="date" id="date_to" name="date_to" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br>
 
                                 </div>
+                                <input type="button" value="Không gian" class="button_title_feature" style="border: 1px solid blue;" >
+                                <div class="table_form_feature" style="height: auto;background-color: white;border: 1px solid blue;"><br/><br/>
+                                <label style="color: black;margin-left: 10px;">Tren trai:</label>
+                                <label style="color: black;margin-left: 10px;float: right;margin-right: 78px;">Duoi trai:</label><br/>
+                                <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" >
+                                <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ><br/>
+                                <p style="margin-top: 20px;"></p>
+
+                                <label style="color: black;margin-left: 10px;">Tren phai:</label>
+                                <label style="color: black;margin-left: 10px;float: right;margin-right: 78px;">Duoi phai:</label><br/>
+                                <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" >
+                                <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ><br/>
+                                <p style="margin-top: 20px;"></p>
+                                </div>
+                                <input type="hidden" name="_token" value=" {{ csrf_token() }}">
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+
                                 <input type="submit" style="margin-left: 20px; margin-top: 20px ;border: 1px double black; width: 80px;height: 30px; background-color: white" value="Tìm kiếm" onclick="show_result('form_search','form_result');" >
+
+
                         </div><!-- pws_example_mixed_content_left -->
-                        <div class="pws_example_mixed_content_result" id="form_result">
-                            <div class ="title_result">
-                                <div  style="margin-top: 15px;margin-left: 50px">
-                                    <span> Có 500 kết quả tìm được</span>
-                                </div>
-                            </div>
-                            <input type="checkbox" value="Chọn tất cả" style="margin-left: 20px" id="check" onclick="allchecked();">
-                            <span>Chọn tất cả</span>
-                            <input type="submit" style="margin-left: 20px; margin-top: 20px ;border: 1px double black; width: 150px;height: 30px; background-color: white;box-shadow: 1px 1px 1px #888888;" value="Cho vào giỏ hàng" >
-                            <div class="table_form_result">
-                                <div class="table_form_one_result">
-                                    <a href="#" class="result_image"></a>
-                                    <div class="data_show">
-                                        <div class="name_product">
-                                            <span>MOD04..............</span>
-                                        </div>
-                                        <div class="time_product">
-                                             <span>11/04/2016</span>
-                                        </div>
-                                    </div>
-                                    <div class="toolbar_result">
-                                        <a href="#" class="toolbar_metadata_image"></a>
-                                        <a href="#" class="toolbar_download_image"></a>
-                                    </div>
-                                    <input type="checkbox" id ="check1" style="float: leftl;margin-left: 40px;margin-top: 40px">
-                                </div>
-                                 <div class="table_form_one_result">
-                                    <a href="#" class="result_image"></a>
-                                      <div class="data_show">
-                                            <div class="name_product">
-                                                <span>MOD04..............</span>
-                                            </div>
-                                            <div class="time_product">
-                                                 <span>11/04/2016</span>
-                                            </div>
-                                            </div>
-                                            <div class="toolbar_result">
-                                                <a href="#" class="toolbar_metadata_image"></a>
-                                                <a href="#" class="toolbar_download_image"></a>
-                                      </div>
-                                      <input type="checkbox" id ="check2" style="float: leftl;margin-left: 40px;margin-top: 40px">
-                                 </div>
-                                 <div class="table_form_one_result">
-                                    <a href="#" class="result_image"></a>
-                                    <div class="data_show">
-                                        <div class="name_product">
-                                            <span>MOD04..............</span>
-                                        </div>
-                                        <div class="time_product">
-                                             <span>11/04/2016</span>
-                                        </div>
-                                    </div>
-                                    <div class="toolbar_result">
-                                        <a href="#" class="toolbar_metadata_image"></a>
-                                        <a href="#" class="toolbar_download_image"></a>
-                                    </div>
-                                    <input type="checkbox" id ="check3" style="float: leftl;margin-left: 40px;margin-top: 40px">
-                                </div>
-                                <div class="table_form_one_result">
-                                    <a href="#" class="result_image"></a>
-                                    <div class="data_show">
-                                        <div class="name_product">
-                                            <span>MOD04..............</span>
-                                        </div>
-                                        <div class="time_product">
-                                             <span>11/04/2016</span>
-                                        </div>
-                                    </div>
-                                    <div class="toolbar_result">
-                                        <a href="#" class="toolbar_metadata_image"></a>
-                                        <a href="#" class="toolbar_download_image"></a>
-                                    </div>
-                                    <input type="checkbox" id ="check4" style="float: leftl;margin-left: 40px;margin-top: 40px">
-                                </div>
-                                <div class="table_form_one_result">
-                                    <a href="#" class="result_image"></a>
-                                    <div class="data_show">
-                                        <div class="name_product">
-                                            <span>MOD04..............</span>
-                                        </div>
-                                        <div class="time_product">
-                                             <span>11/04/2016</span>
-                                        </div>
-                                    </div>
-                                    <div class="toolbar_result">
-                                        <a href="#" class="toolbar_metadata_image"></a>
-                                        <a href="#" class="toolbar_download_image"></a>
-                                    </div>
-                                    <input type="checkbox" id ="check5" style="float: leftl;margin-left: 40px;margin-top: 40px">
-                                </div>
-                                <div class="table_form_one_result">
-                                    <a href="#" class="result_image"></a>
-                                    <div class="data_show">
-                                        <div class="name_product">
-                                            <span>MOD04..............</span>
-                                        </div>
-                                        <div class="time_product">
-                                             <span>11/04/2016</span>
-                                        </div>
-                                    </div>
-                                    <div class="toolbar_result">
-                                        <a href="#" class="toolbar_metadata_image"></a>
-                                        <a href="#" class="toolbar_download_image"></a>
-                                    </div>
-                                    <input type="checkbox" id ="check6" style="float: leftl;margin-left: 40px;margin-top: 40px" >
-
-                                </div>
-                                <script language="javascript">
-                                    function allchecked(){
-                                        if (document.getElementById('check').checked==true){
-                                            document.getElementById('check1').checked=true;
-                                            document.getElementById('check2').checked=true;
-                                            document.getElementById('check3').checked=true;
-                                            document.getElementById('check4').checked=true;
-                                            document.getElementById('check5').checked=true;
-                                            document.getElementById('check6').checked=true;
-                                            }else{
-                                                document.getElementById('check1').checked=false;
-                                                document.getElementById('check2').checked=false;
-                                                document.getElementById('check3').checked=false;
-                                                document.getElementById('check4').checked=false;
-                                                document.getElementById('check5').checked=false;
-                                                document.getElementById('check6').checked=false;
-                                            }
-                                    }
-                                </script>
-                            </div>
-                            <input type="submit" style="margin-left: 20px; margin-top: 20px ;margin-bottom:20px;border: 1px double black; width: 80px;height: 30px; background-color: white" value="Quay lai" onclick="back_seach('form_search','form_result');" >
-
-                          </div>
+                    </form>
 
 
-                        <script language="javascript">
-                            function show_result(id1,id2){
-                                if (document.getElementById(id1).style.display='block'){
-                                    document.getElementById(id1).style.display='none';
-                                    document.getElementById(id2).style.display='block';
-                                }
-                            }
-                            function back_seach(id1,id2){
-                                if (document.getElementById(id2).style.display='block'){
-                                    document.getElementById(id2).style.display='none';
-                                    document.getElementById(id1).style.display='block';
-                                }
-                            }
-                        </script>
+
+
                         <div class="pws_example_mixed_content_right" >
                             <div style="width: 100%;height: 99%;border: 1px solid blue;margin-bottom: 10px;padding-top: 7px;background-color: white;">
-                                
+
+
+                                <div id="map" style="height: 100%;margin-top: -7px;"></div>
+                                <script>
+                                    function initMap() {
+                                      var uluru = {lat: 21.0216, lng: 105.4657};
+                                      var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 4,
+                                        center: uluru
+                                      });
+
+                                      var contentString = '<div id="content">'+
+                                          '<div id="siteNotice">'+
+                                          '</div>'+
+
+                                          '<div id="bodyContent">'+
+                                          '<p><b>Trung tâm fimo</b>' +
+                                          '</div>'+
+                                          '</div>';
+
+                                      var infowindow = new google.maps.InfoWindow({
+                                        content: contentString
+                                      });
+
+                                      var marker = new google.maps.Marker({
+                                        position: uluru,
+                                        map: map,
+                                        title: 'Uluru (Ayers Rock)'
+                                      });
+                                      marker.addListener('click', function() {
+                                        infowindow.open(map, marker);
+                                      });
+                                    }
+
+                                </script>
+                                <script async defer
+                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPgZPImlcrZ5Wffcmglv6XmFQgaNbG1dI&callback=initMap">
+                                </script>
                             </div>
                             <div>
                                 

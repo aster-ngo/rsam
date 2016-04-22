@@ -267,7 +267,7 @@ label.error{
 }
 .table_form_time{
     width: 300px;
-    height: 200px;
+    height: 130px;
     border: 1px double blue;
     margin: auto;
     background-color: white;
@@ -322,15 +322,21 @@ label.error{
     box-shadow: 1px 1px 1px #888888;
 }
 .pws_example_mixed_content_result{
-    display:none;
+
     width: 340px;
     height: 650px;
+    position: relative;
     float: left;
+    display: block;
     margin-right: 30px;
+    overflow: auto;
     border-left: 0.5px double #000000;
     border-right: 1px double #000000;
     border-bottom: 1px double #000000;
-    border-top:1px double #000000;
+    border-top:1px double #000000 ;
+    background-color: white;
+    padding: 5px 5px;
+
 }
 .title_result{
     width: 300px;
@@ -359,43 +365,107 @@ label.error{
     box-shadow: 1px 1px 1px #888888;
     height: 120px;
 }
-.result_image{
-    width: 100px;
-    height: 100px;
-    margin-left: 5px;
-    margin-top: 8px;
-    border: 1px solid #000000;
-    box-shadow: 1px 1px 1px #888888;
-    background-image: url("../img/product.png");
-    float: left;
-}
+
 .toolbar_result{
-    width: 80px;
-    height: 40px;
+    width: 90px;
+    height: 35px;
     border: 1px solid #000000;
     box-shadow: 1px 1px 1px #888888;
     margin-left: 10px;
-    margin-top: 13px;
+    margin-top: 15px;
     float: left;
 }
-.toolbar_metadata_image{
-     width: 32px;
-     height: 32px;
+.toolbar_metadata{
+     width: 25px;
+     height: 25px;
      margin: auto;
-     margin-left: 5px;
-     margin-top: 4px;
-     background-image: url("../img/File-Word-icon.png");
+     /*margin-left: 5px;*/
+     /*margin-top: 4px;*/
+     /*background-image: url("../img/File-Word-icon.png");*/
      float: left;
+     position: relative;
+     display: inline-block;
  }
-.toolbar_download_image{
-    width: 32px;
-    height: 32px;
+.toolbar_metadata_image{
+    width: 25px;
+    height: 25px;
     margin: auto;
-    margin-right: 5px;
+    margin-left: 5px;
     margin-top: 4px;
-    background-image: url("../img/Downloads-icon.png");
-    float: right;
+    background-image: url("../img/File-Word-icon%20.png");
+    float: left;
+    position: relative;
+    display: inline-block;
 }
+.toolbar_foot{
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    /*margin-left: 5px;*/
+    /*margin-top: 4px;*/
+    /*background-image: url("../img/File-Word-icon.png");*/
+    float: left;
+    position: relative;
+    display: inline-block;
+}
+.toolbar_foot_image{
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    margin-left: 5px;
+    margin-top: 4px;
+    background-image: url("../img/foot.png");
+    float: left;
+    position: relative;
+    display: inline-block;
+}
+.toolbar_foot:hover .tooltip{
+    visibility: visible;
+}
+.tooltip{
+    visibility: hidden;
+    width: 120px;
+    background-color: #000000;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 90;
+}
+.toolbar_metadata:hover .tooltip{
+    visibility: visible;
+}
+.toolbar_download{
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    /*margin-right: 5px;*/
+    /*margin-top: 4px;*/
+    /*background-image: url("../img/Downloads-icon.png");*/
+    float: left;
+    margin-left: 8px;
+    position: relative;
+}
+
+.toolbar_download_image{
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    margin-left: 5px;
+    margin-top: 4px;
+    background-image: url("../img/Downloads-icon%20.png");
+    float: right;
+    position: relative;
+}
+
+.toolbar_download:hover .tooltip{
+    visibility: visible;
+}
+
 .name_product{
     width: 130px;
     height: 20px;

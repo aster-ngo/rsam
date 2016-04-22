@@ -18,7 +18,10 @@ Route::controllers([
 
 Route::get('auth/login', ['as'=>'login_get','uses' => 'Auth\AuthController@getLogin']);
 
+
+
 Route::post('auth/login', ['as'=>'login_post','uses' => 'Auth\AuthController@postLogin']);
+
 
 Route::get('auth/logout', ['as'=>'logout_get','uses' => 'Auth\AuthController@getLogout']);
 
@@ -50,6 +53,7 @@ Route::get('index.html', function(){
 		return Redirect::to('home');
 	}
 });
+
 
 Route::get('home', function(){
 	if(Auth::user()->role == 1){
@@ -86,3 +90,14 @@ Route::get('admin/nguoi-dung', function(){
 Route::get('admin/don-hang-yeu-cau', function(){
 	return view('admins.donhangyeucau');
 });
+Route::post('rs_result', 'DataController@result_data');
+Route::post('download_txt', 'MetadatadownloadController@download_txt');
+Route::post('download_png', 'MetadatadownloadController@download_png');
+Route::post('shopping-card', 'ShoppingCardController@shopping_card');
+
+
+
+
+
+
+
