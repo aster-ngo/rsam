@@ -3,13 +3,23 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>RSAM</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/dialog.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery.pwstabs.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/pwstabs.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/table.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery-ui.css') }}">
 
         <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/jquery-ui.js') }}"></script>
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
 
     </head>
     <body>
@@ -923,8 +933,8 @@
                         <input type="button" value="Thuộc tính" class="button_title_feature" style="border: 1px solid blue;" >
                         <div class="table_form_feature" style="height: auto;background-color: white;border: 1px solid blue;"><br/><br/>
                             <label style="color: black;margin-left: 10px;">Thành phần:</label> <br/>
-                            <select class="custom_select_tag" id="variable" style="margin-top: 2px;margin-bottom: 20px;">
-                                <option value="pr">Lượng mưa</option>
+                            <select class="custom_select_tag" id="variable" name="variable" style="margin-top: 2px;margin-bottom: 20px;">
+                                <option value="pr" selected >Lượng mưa</option>
                                 <option value="ps">Áp suất</option>
                                 <option value="sst">Nhiệt đồ bề mặt biển</option>
                                 <option value="temp">Nhiệt độ</option>
@@ -936,38 +946,38 @@
                             <span id="add-level" ></span>
 
                             <label id="level" style="color: black;margin-left: 10px;">Cấp độ:</label> <br/>
-                            <select class="custom_select_tag" id="level-option" style="margin-top: 2px;margin-bottom: 20px;">
-                                <option value="1000mb">1000mb</option>
-                                <option value="850mb">850mb</option>
-                                <option value="500mb">500mb</option>
-                                <option value="250mb">250mb</option>
+                            <select class="custom_select_tag" id="level-option" name="level-option" style="margin-top: 2px;margin-bottom: 20px;">
+                                <option value="1000">1000mb</option>
+                                <option value="850">850mb</option>
+                                <option value="500">500mb</option>
+                                <option value="200">250mb</option>
                             </select>
 
                             <label style="color: black;margin-left: 10px;">Loại đầu ra:</label> <br/>
-                            <select class="custom_select_tag" id="type-result" style="margin-top: 2px;margin-bottom: 20px;">
-                                <option value="Bản đồ">Bản đồ</option>
-                                <option value="Biểu đồ">Biểu đồ</option>
+                            <select class="custom_select_tag" id="type-result" name="type-result" style="margin-top: 2px;margin-bottom: 20px;">
+                                <option value="map">Bản đồ</option>
+                                <option value="chart">Biểu đồ</option>
                                 
                             </select>
 
                             <span id="add-type-map" ></span>
 
                             <label id="label-type-map" style="color: black;margin-left: 10px;">Dạng biểu đồ:</label> <br/>
-                            <select class="custom_select_tag" id="type-map" style="margin-top: 2px;margin-bottom: 20px;">
-                                <option value="">contour</option>
-                                <option value="">shaded</option>
+                            <select class="custom_select_tag" id="type-map" name="type-map" style="margin-top: 2px;margin-bottom: 20px;">
+                                <option value="contour">contour</option>
+                                <option value="shaded">shaded</option>
                                 
                             </select>
 
                         </div> <!-- end div 'thuộc tính' -->
 
                         <script type="text/javascript">
+                            $('#level, #level-option').remove();
                             $('#variable').change(function() {
                                 // console.log($(this).val());
-                                $('#level, #level-option').remove();
                                 $variable = $(this).val();
                                 if($variable == "temp" || $variable == "wind"){
-                                    var level = "<label id='level' style='color: black;margin-left: 10px;''>Cấp độ:</label> <br/><select class='custom_select_tag' id='level-option' style='margin-top: 2px;margin-bottom: 20px;'><option value='1000mb'>1000mb</option><option value='850mb'>850mb</option><option value='500mb'>500mb</option><option value='250mb'>250mb</option></select>";
+                                    var level = "<label id='level' style='color: black;margin-left: 10px;''>Cấp độ:</label> <br/><select class='custom_select_tag' id='level-option' name='level-option' style='margin-top: 2px;margin-bottom: 20px;'><option value='1000mb'>1000mb</option><option value='850mb'>850mb</option><option value='500mb'>500mb</option><option value='250mb'>250mb</option></select>";
                                     $('#add-level').html(level);
                                     
                                 }else{
@@ -980,8 +990,8 @@
                                 // console.log($(this).val());
                                 $('#label-type-map, #type-map').remove();
                                 var variable = $(this).val();
-                                if(variable == "Bản đồ"){
-                                    var level = "<label id='label-type-map' style='color: black;margin-left: 10px;''>Dạng biểu đồ:</label> <br/><select class='custom_select_tag' id='type-map' style='margin-top: 2px;margin-bottom: 20px;'><option >contour</option><option >shaded</option></select>";
+                                if(variable == "map"){
+                                    var level = "<label id='label-type-map' style='color: black;margin-left: 10px;''>Dạng biểu đồ:</label> <br/><select class='custom_select_tag' id='type-map' name='type-map' style='margin-top: 2px;margin-bottom: 20px;'><option >contour</option><option >shaded</option></select>";
                                     $('#add-type-map').html(level);
                                     
                                 }else{
@@ -994,34 +1004,68 @@
                         <input type="button" value="Thời gian" class="button_title_feature" style="border: 1px solid blue;" >
                         <div class="table_form_feature" style="height: auto;background-color: white;border: 1px solid blue;"><br/><br/>
                             <label style="color: black;margin-left: 10px;">Thang tỷ lệ:</label> <br/>
-                            <select class="custom_select_tag" id="time-date" style="margin-top: 2px;margin-bottom: 20px;">
-                                <option value="daily">Hàng ngày</option>
+                            <select class="custom_select_tag" id="time-date" name="time-date" style="margin-top: 2px;margin-bottom: 20px;">
+                                <option value="daily" selected >Hàng ngày</option>
                                 <option value="monthly">Hàng tháng</option>
                                 <option value="year">Hàng năm</option>
 
                             </select>
                             
-                            <label id="" style="color: black;margin-left: 10px;">Thời gian từ:</label> <br/>
-                            <input type="date" id="fromtDate" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br>
+                            <span id="add-from-date" ></span>
+                            <label id="label-time" style="color: black;margin-left: 10px;">Thời gian từ:</label> <br/>
+                            <!-- <input type="date" id="fromtDate" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br> -->
+                            <input type="text" id="fromDate" class="fromDate time" name="fromDate" value="02-03-2012" placeholder="dd-mm-yyyy" ><br/> 
+    
 
-                            <label id="" style="color: black;margin-left: 10px;">Thời gian đến:</label> <br/>
-                            <input type="date"  id="totDate" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br>
+                            <label id="label-time" style="color: black;margin-left: 10px;">Thời gian đến:</label> <br/>
+                            <!-- <input type="date"  id="totDate" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br> -->
+                            <span id="add-to-date" ></span>
+                            <input type="text" id="toDate" class="toDate time" name="toDate" value="04-03-2012" placeholder="dd-mm-yyyy" ><br/>
                                  
                         </div>  <!-- end div 'thời gian' -->
 
-                        <script type="text/javascript">
-                            $('#time-date').change(function() {
-                                
-                                $('#totDate').disabled();
-                                // var variable = $(this).val();
-                                // if(variable == "daily"){
-                                //     $()
-                                // }else{
-                                    
-                                //     $('#add-type-map').html("<span id='add-type-map' ></span>");
-                                // }
-                            });
+                        <script>
+
+                              $(function() {
+                                $( "#fromDate" ).datepicker({
+                                  // showOn: "button",
+                                  // buttonImage: "{{ asset('public/img/calendar.gif') }}",
+                                  // buttonImageOnly: true,
+                                  // buttonText: "Chọn thời gian",
+
+                                  dateFormat: 'dd-mm-yy',
+                                  defaultDate: "+1w",
+                                  changeMonth: true,
+                                  changeYear: true,
+                                  onClose: function( selected) {
+                                    $( "#toDate" ).datepicker( "option", "minDate", selected);
+                                    $( "#toDate" ).datepicker( "option", "minMonth", selected);
+                                  }
+                                });
+
+                                $( "#toDate" ).datepicker({
+                                  // showOn: "button",
+                                  // buttonImage: "{{ asset('public/img/calendar.gif') }}",
+                                  // buttonImageOnly: true,
+                                  // buttonText: "Chọn thời gian",
+
+                                  dateFormat: 'dd-mm-yy',
+                                  defaultDate: "+1w",
+                                  changeMonth: true,
+                                  changeYear: true,
+                                  onClose: function( selected) {
+                                    $( "#fromDate" ).datepicker( "option", "maxDate", selected);
+                                    $( "#fromDate" ).datepicker( "option", "maxMonth", selected);
+                                  }
+                                });
+                              });
                         </script>
+
+
+
+
+
+
 
 
 
@@ -1030,15 +1074,20 @@
                         <div class="table_form_feature" style="height: auto;background-color: white;border: 1px solid blue;"><br/><br/>
                            <label style="color: black;margin-left: 10px;">Min lat:</label>
                            <label style="color: black;margin-left: 10px;float: right;margin-right: 78px;">Max lat:</label><br/>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" ></input>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ></input><br/>
+                            <input type="text" id="minlat" name="minlat" value="7" style="width: 120px;margin-left: 10px;float: left;" ></input>
+                            <input type="text" id="maxlat" name="maxlat" value="30" style="width: 120px;float: right;margin-right: 10px" ></input><br/>
                             <p style="margin-top: 20px;"></p>
                             
                             <label style="color: black;margin-left: 10px;">Min lon:</label>
                            <label style="color: black;margin-left: 10px;float: right;margin-right: 78px;">Max lon:</label><br/>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;margin-left: 10px;float: left;" ></input>
-                            <input type="text" style="box-shadow: 1px 1px 1px #888888;width: 120px;float: right;margin-right: 10px" ></input><br/>
+                            <input type="text" id="minlon" name="minlon" value="90" style="width: 120px;margin-left: 10px;float: left;" ></input>
+                            <input type="text" id="maxlon" name="maxlon" value="120" style="width: 120px;float: right;margin-right: 10px" ></input><br/>
                             <p style="margin-top: 20px;"></p>
+
+                            
+
+
+
                         </div> <!-- end div 'không gian' -->
 
 
@@ -1076,6 +1125,54 @@
                                 $('#reset, #animation, #download, #shopping-card, #option-time').show();
                                 $('#plot').attr("disabled", true);
                                 $('#plot').css('background-color', '#BDAFC7');
+
+
+                                var variable = $("select[name=variable]").val();
+                                var typeResult = $("select[name=type-result]").val();
+                                var levelOption = $("select[name=level-option]").val();
+                                var typeMap = $("select[name=type-map]").val();
+                                var typeWind = 'NULL';
+                                var timeDate = $("select[name=time-date]").val();
+                                var fDate = $("#fromDate").val();
+                                var tDate = $("#toDate").val();
+                                var minlat = $("#minlat").val();
+                                var maxlat = $("#maxlat").val();
+                                var minlon = $("#minlon").val();
+                                var maxlon = $("#maxlon").val();
+
+                                fromDate = standardDate(fDate)
+                                toDate = standardDate(tDate)
+
+                                var dataString = variable + "," + typeResult + "," + typeMap + "," + timeDate + "," + fromDate + "," + toDate + "," + minlat + "," + minlon + "," + maxlat + "," + maxlon;
+
+                                console.log(dataString)
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "test",
+                                    dataType: 'json',
+                                    data: {
+                                        'variable' : variable,
+                                        'typeresult' : typeResult,
+                                        'typemap' : typeMap,
+                                        'typewind' : typeWind,
+                                        'typelevel' : levelOption,
+                                        'timeDate' : timeDate,
+                                        'fromDate' : fromDate,
+                                        'toDate' : toDate,
+                                        'minlat' : minlat,
+                                        'minlon' : minlon,
+                                        'maxlat' : maxlat,
+                                        'maxlon' : maxlon,
+                                    },
+                                    success: function(data){
+                                        // var mess = data.msg;
+                                        console.log(data);
+                                        // if(mess.search("plot is done.") != -1){
+                                        //     console.log("ok")
+                                        // }
+                                    }
+                                });
                                 
                             });
                             $('#reset').click(function() {
@@ -1086,12 +1183,25 @@
                                 
                             });
 
+                            function standardDate(dates){
+                                list = dates.split('-');
+
+                                return list[2] + '-' + list[1] + '-' + list[0]; 
+                            }
+
                         </script>
 
                         <div style="width: 100%;height: 90%;;border: 1px solid blue;">
-                            <img src="{{ asset('public/img/plot-example.png') }}" width="100%" height="100%">
+                            <img nam src="{{ asset('public/img/plot-example.png') }}" width="100%" height="100%">
                         </div>
                     </div> <!-- end pws_example_mixed_content_right -->
+                    
+
+                    <script type="text/javascript">
+                        // $("#plot").click(function(){
+                            
+
+                    </script>
                     
 
 
