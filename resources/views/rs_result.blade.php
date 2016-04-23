@@ -79,7 +79,7 @@
                                     <input type="hidden" name="northbound"  value="{{ $data->north }}">
                                     <input type="hidden" name="southbound"  value="{{ $data->south }}">
                                     <input type="hidden" name="westbound"  value="{{ $data->west }}">
-                                    <input type="hidden" name="conner"  value="{{ $data->conner }}">
+                                    <input type="hidden" name="corner"  value="{{ $data->corner }}">
                                     <input type="hidden" name="stt">
 
 
@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="toolbar_foot">
 
-                                        <input type="button" class=" toolbar_foot_image" name="foot"  style="background-color: white"  onclick="footMap(this);">&nbsp;&nbsp;
+                                        <input type="button" class=" toolbar_foot_image" name="foot"  style="background-color: white"  onclick="footMap(this.id);">&nbsp;&nbsp;
                                         <span class="tooltip">Đánh dấu</span>
 
                                     </div>
@@ -115,18 +115,46 @@
                             </div>
                             <script>
 
-                                      // This example creates a simple polygon representing the Bermuda Triangle.
-
+                                         // This example creates a simple polygon representing the Bermuda Triangle.
+                                    var map;
+                                    function initMap(){
+                                          var uluru = {lat: 21.0216, lng: 105.4657};
+                                          map = new google.maps.Map(document.getElementById('map'), {
+                                          zoom: 4,
+                                          center: uluru
+                                        });
+                                      }
                                       stt++;
+                                      var historicalOverlay=[];
+                                      var imageBounds=[];
+                                      var eastbound=[];
+                                      var northbound=[];
+                                      var westbound=[];
+                                      var southbound=[];
+                                      var triangleCoords=[];
+                                      var bermudaTriangle=[];
+                                      var part=[];
+                                      var east=[];
+                                      var north=[];
+                                      var west=[];
+                                      var south=[];
+                                      var corner=[];
+                                      var UperLeft=[];
+                                      var UperRight=[];
+                                      var LowerLeft=[];
+                                      var LowerRight=[];
+                                      var cornerCoordinate_db=[];
+                                      var cornerCoordinate_sub=[];
                                       var id_stt=document.getElementsByName('show_image');
                                       var eastbound_stt=document.getElementsByName('eastbound');
                                       var northbound_stt=document.getElementsByName('northbound');
                                       var southbound_stt=document.getElementsByName('southbound');
                                       var westbound_stt=document.getElementsByName('westbound');
-                                      var conner_stt=document.getElementsByName('conner');
+                                      var corner_stt=document.getElementsByName('corner');
                                       var foot_stt=document.getElementsByName('foot');
                                       for (var i=stt-1,n=id_stt.length;i<n;i++){
                                           id_stt[i].id=i;
+
                                           }
                                       for (var i=stt-1,n=eastbound_stt.length;i<n;i++){
                                           eastbound_stt[i].id='eastbound['+i+']';
@@ -138,38 +166,39 @@
                                           }
                                       for (var i=stt-1,n=southbound_stt.length;i<n;i++){
                                           southbound_stt[i].id='southbound['+i+']';
+                                          ;
                                           }
                                       for (var i=stt-1,n=westbound_stt.length;i<n;i++){
                                           westbound_stt[i].id='westbound['+i+']';
 
                                           }
-                                      for (var i=stt-1,n=conner_stt.length;i<n;i++){
-                                          conner_stt[i].id='conner['+id+']';
+                                      for (var i=stt-1,n=corner_stt.length;i<n;i++){
+                                          corner_stt[i].id='corner[foot['+i+']]';
 
                                           }
                                       for (var i=stt-1,n=foot_stt.length;i<n;i++){
-                                          foot_stt[i].id='foot['+id+']';
-
+                                          foot_stt[i].id='foot['+i+']';
                                           }
-                                      function footMap(id) {
-                                          var map = new google.maps.Map(document.getElementById('map'), {
-                                              zoom:3,
-                                              center: {lat: 24.886, lng: 120.268},
-                                              mapTypeId: google.maps.MapTypeId.TERRAIN
-                                          });
 
-                                          // Define the LatLng coordinates for the polygon's path.
-//                                          alert (id);
-                                          var triangleCoords = [
-                                              {lat: 34.0476715664287, lng: 105.703710021173},
-                                              {lat: 30.4483642384887, lng: 131.080224800376},
-                                              {lat: 3.77903764914157, lng: 123.05450489609},
-                                              {lat: 6.66834990288069, lng: 102.298819741454}
+                                      function footMap(id) {
+                                          corner[id]='corner['+id+']';
+                                          cornerCoordinate_db[id]=document.getElementById(corner[id]).value;
+                                          cornerCoordinate_sub[id]=cornerCoordinate_db[id].substring(2,cornerCoordinate_db[id].length-2);
+                                          alert (cornerCoordinate_sub[id]);
+//                                          UperLeft[id]
+//                                          UperRight[id]
+//                                          LowerLeft[id]
+//                                          LowerRight[id]
+                                          triangleCoords[id] = [
+                                              {lat: 30.7968977202481, lng: 87.5304566407693},
+                                              {lat: 27.3460943296505, lng: 111.324649481482},
+                                              {lat: 9.6645489566301, lng: 106.12942400895},
+                                              {lat: 12.6418638326524, lng: 84.87399058194}
                                           ];
 
                                           // Construct the polygon.
-                                          var bermudaTriangle = new google.maps.Polygon({
-                                              paths: triangleCoords,
+                                          bermudaTriangle[id] = new google.maps.Polygon({
+                                              paths: triangleCoords[id],
                                               strokeColor: '#FF0000',
                                               strokeOpacity: 0.8,
                                               strokeWeight: 2,
@@ -177,41 +206,43 @@
                                               fillOpacity: 0.35
                                           });
 
-                                          bermudaTriangle.setMap(map);
+                                          bermudaTriangle[id].setMap(map);
                                       }
-                                       var historicalOverlay;
 
-                                          function showimage(id) {
-                                              var map = new google.maps.Map(document.getElementById('map'), {
-                                                  zoom: 3,
-                                                  center: {lat: 20, lng: 120.18}
-                                              });
 
-                                              var eastbound='eastbound['+id+']';
-                                              var northbound='northbound['+id+']';
-                                              var southbound='southbound['+id+']';
-                                              var westbound='westbound['+id+']';
+                                      function showimage(id) {
 
-                                              var part=document.getElementById(id).getAttribute("src");
+                                          eastbound[id]='eastbound['+id+']';
+                                          northbound[id]='northbound['+id+']';
+                                          southbound[id]='southbound['+id+']';
+                                          westbound[id]='westbound['+id+']';
+                                          part[id]=document.getElementById(id).getAttribute("src");
 
-                                              var east=parseFloat(document.getElementById(eastbound).value);
-                                              var north=parseFloat(document.getElementById(northbound).value);
-                                              var south=parseFloat(document.getElementById(southbound).value);
-                                              var west=parseFloat(document.getElementById(westbound).value);
+                                          east[id]=parseFloat(document.getElementById(eastbound[id]).value);
+                                          north[id]=parseFloat(document.getElementById(northbound[id]).value);
+                                          south[id]=parseFloat(document.getElementById(southbound[id]).value);
+                                          west[id]=parseFloat(document.getElementById(westbound[id]).value);
 
-                                              var imageBounds = {
-                                                  north: north,
-                                                  south: south,
-                                                  east: east,
-                                                  west: west
-                                              };
+                                          imageBounds[id] = {
+                                              north: north[id],
+                                              south: south[id],
+                                              east: east[id],
+                                              west: west[id]
+                                          };
 
 
 
-                                              historicalOverlay = new google.maps.GroundOverlay(
-                                                      part,
-                                                      imageBounds);
-                                              historicalOverlay.setMap(map);
+                                          historicalOverlay[id] = new google.maps.GroundOverlay(
+                                                  part[id],
+                                                  imageBounds[id]);
+                                          historicalOverlay[id].setMap(map);
+
+                                      }
+                                      function removeOverlay() {
+                                      for (var i=0;i<stt;i++){
+                                        historicalOverlay[0].setMap(null);
+                                        historicalOverlay[1].setMap(null);
+                                        }
                                           }
 
                                   </script>
@@ -242,9 +273,14 @@
                         </script>
                         <div class="pws_example_mixed_content_right" >
                             <div style="width: 100%;height: 99%;border: 1px solid blue;margin-bottom: 10px;padding-top: 7px;background-color: white;">
-                                <div id="map" style="height: 100%;margin-top: -7px;"></div>
+                                <div id="map" style="height: 100%;margin-top: -7px; " >
+                                </div>
+                                <input type="button" id="hide" value="Clear map" onclick="removeOverlay();" style="z-index: 5;position: absolute;float: left;">
+
+
+
                                 <script async defer
-                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPgZPImlcrZ5Wffcmglv6XmFQgaNbG1dI">
+                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPgZPImlcrZ5Wffcmglv6XmFQgaNbG1dI&callback=initMap">
                                 </script>
                             </div>
                             <div>
