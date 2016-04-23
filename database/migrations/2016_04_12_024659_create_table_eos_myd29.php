@@ -16,11 +16,15 @@ class CreateTableEosMyd29 extends Migration {
             $table->increments('id');
             $table->string('filename',100);
             $table->string('path',100);
-            $table->string('conner');
+            $table->string('corner');
             $table->integer('collection');
             $table->string('size',50);
             $table->date('aqstime');
             $table->date('updatetime');
+            $table->double('easth');
+            $table->double('nouth');
+            $table->double('south');
+            $table->double('west');
 
         });
     }
