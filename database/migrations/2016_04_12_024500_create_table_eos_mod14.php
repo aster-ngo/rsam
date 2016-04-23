@@ -21,7 +21,7 @@ class CreateTableEosMod14 extends Migration {
             $table->string('size',50);
             $table->date('aqstime');
             $table->date('updatetime');
-            $table->double('easth');
+            $table->double('east');
             $table->double('nouth');
             $table->double('south');
             $table->double('west');
