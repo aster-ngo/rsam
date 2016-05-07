@@ -859,3 +859,18 @@
   -o-transition: all .3s ease-in-out .3s;
   transition: all .3s ease-in-out .3s;
 }
+
+#toolbar {
+  height: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  background: #efefef;
+  background: linear-gradient(#fefefe, #efefef);
+  border: 1px solid #678ab7;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  margin-bottom: 5px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  /*float: right;*/
+}

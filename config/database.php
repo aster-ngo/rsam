@@ -72,8 +72,20 @@ return [
 			'password' => env('DB_PASSWORD', '123456'),
 			'charset'  => 'utf8',
 			'prefix'   => '',
-			'schema'   => 'public', 'eos',
+			'schema'   => 'public', 'eos', 'npp', 'meteorological',
 		],
+
+		// 'pgsql' => [
+		// 	'driver'   => 'pgsql',
+		// 	'host'     => env('DB_HOST', '112.137.129.222'),
+		// 	'port' => env('DB_PORT', 1188),
+		// 	'database' => env('DB_DATABASE', 'sinhvien'),
+		// 	'username' => env('DB_USERNAME', 'sinhvien'),
+		// 	'password' => env('DB_PASSWORD', 'sinhvien'),
+		// 	'charset'  => 'utf8',
+		// 	'prefix'   => '',
+		// 	'schema'   => 'public', 'eos', 'npp', 'meteorological',
+		// ],
 
 		'sqlsrv' => [
 			'driver'   => 'sqlsrv',

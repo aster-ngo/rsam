@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>RSAM</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/dialog.css') }}">
@@ -22,32 +22,32 @@
         </script>
 
     </head>
+
     <body>
         
         <div class="header" >
-            <h1 class="title-banner">Hệ thống dữ liệu viễn thám, khí tượng</h1>
-
-
-            <div class="option">
-                
-                    @if (Auth::guest())
-                        <!-- <a href="#dialog-profile-box" class="dialog-window button" style="padding: 0px 15px;">Chào mừng DuongND</a>&nbsp;&nbsp; -->
-                        <a href="#dialog-logout-box" class="dialog-window button" style="padding: 0px 15px;">Đăng ký</a>&nbsp;&nbsp;
-                        <a href="#dialog-login-box" class="dialog-window button">Đăng nhập</a>
-                    @else
-
-                        <a href="#dialog-shopping-card-box" class="dialog-window button" style="padding: 0px 15px;">Giỏ hàng</a>&nbsp;&nbsp;
-                        <a href="#dialog-profile-box" class="dialog-window button" style="padding: 0px 15px;">Chào mừng {{ Auth::user()->name }}</a>&nbsp;&nbsp;
-                        <a href="{{ url('/auth/logout') }}" class="dialog-window button" style="padding: 0px 15px;">Thoát</a>&nbsp;&nbsp;
-                        
-                    @endif
-                
-            </div>
-
+            <!-- <h1 class="title-banner">Hệ thống dữ liệu viễn thám, khí tượng</h1> -->
 
         </div> <!-- end header -->
 
-        <div class="content">
+        <div id="toolbar">            
+            <a href="{!! url('index.html') !!}" style="color: blue;float: left;">Trang chủ</a>
+            @if (Auth::guest())
+                <!-- <a href="#dialog-profile-box" class="dialog-window button" style="padding: 0px 15px;">Chào mừng DuongND</a>&nbsp;&nbsp; -->
+                <a href="#dialog-login-box" class="dialog-window" style="color: blue;float: right;">Đăng nhập</a>
+                <a href="#dialog-logout-box" class="dialog-window" style="color: blue;padding: 0px 15px;float: right;">Đăng ký</a>&nbsp;
+
+            @else
+                <a href="{{ url('/auth/logout') }}" class="dialog-window" style="color: blue;padding: 0px 15px;float: right;">Thoát</a>&nbsp;&nbsp;
+                
+                <a href="#dialog-profile-box" class="dialog-window" style="color: blue;padding: 0px 15px;float: right;">Chào mừng {{ Auth::user()->name }}</a>&nbsp;&nbsp;
+                <a href="{{url('/home/shopping-card')}}" class="dialog-window" style="color: blue;padding: 0px 15px;float: right;">Giỏ hàng</a>&nbsp;&nbsp;
+                
+            @endif
+            
+        </div> <!-- end div option -->
+
+        <span class="content">
             <div class="tabset0">
 
                 <div data-pws-tab="tab1" data-pws-tab-name="Viễn thám" data-pws-tab-icon="fa-refresh fa-spin" >
@@ -904,6 +904,7 @@
                         </div><!-- pws_example_mixed_content_right -->
                     </div><!-- pws_example_mixed_content_block -->
                 </div>
+        
 
 
 
@@ -925,7 +926,7 @@
 
 
 
-                <div data-pws-tab="tab2" data-pws-tab-name="Khí tượng" data-pws-tab-icon="fa-child">
+                 <div data-pws-tab="tab2" data-pws-tab-name="Khí tượng" data-pws-tab-icon="fa-child">
 
                     <!-- start pws_example_mixed_content_left -->
                     <div class="pws_example_mixed_content_left" >
@@ -945,7 +946,7 @@
 
                             <span id="add-level" ></span>
 
-                            <label id="level" style="color: black;margin-left: 10px;">Cấp độ:</label> <br/>
+                            <label id="level-variable" style="color: black;margin-left: 10px;">Cấp độ:</label> <br/>
                             <select class="custom_select_tag" id="level-option" name="level-option" style="margin-top: 2px;margin-bottom: 20px;">
                                 <option value="1000">1000mb</option>
                                 <option value="850">850mb</option>
@@ -964,41 +965,15 @@
 
                             <label id="label-type-map" style="color: black;margin-left: 10px;">Dạng biểu đồ:</label> <br/>
                             <select class="custom_select_tag" id="type-map" name="type-map" style="margin-top: 2px;margin-bottom: 20px;">
+                                <option value="shaded" selected >shaded</option>
                                 <option value="contour">contour</option>
-                                <option value="shaded">shaded</option>
                                 
                             </select>
 
                         </div> <!-- end div 'thuộc tính' -->
 
                         <script type="text/javascript">
-                            $('#level, #level-option').remove();
-                            $('#variable').change(function() {
-                                // console.log($(this).val());
-                                $variable = $(this).val();
-                                if($variable == "temp" || $variable == "wind"){
-                                    var level = "<label id='level' style='color: black;margin-left: 10px;''>Cấp độ:</label> <br/><select class='custom_select_tag' id='level-option' name='level-option' style='margin-top: 2px;margin-bottom: 20px;'><option value='1000mb'>1000mb</option><option value='850mb'>850mb</option><option value='500mb'>500mb</option><option value='250mb'>250mb</option></select>";
-                                    $('#add-level').html(level);
-                                    
-                                }else{
-                                    
-                                    $('#add-level').html("<span id='add-level' ></span>");
-                                }
-                            });
-
-                            $('#type-result').change(function() {
-                                // console.log($(this).val());
-                                $('#label-type-map, #type-map').remove();
-                                var variable = $(this).val();
-                                if(variable == "map"){
-                                    var level = "<label id='label-type-map' style='color: black;margin-left: 10px;''>Dạng biểu đồ:</label> <br/><select class='custom_select_tag' id='type-map' name='type-map' style='margin-top: 2px;margin-bottom: 20px;'><option >contour</option><option >shaded</option></select>";
-                                    $('#add-type-map').html(level);
-                                    
-                                }else{
-                                    
-                                    $('#add-type-map').html("<span id='add-type-map' ></span>");
-                                }
-                            });
+                            
                         </script>
 
                         <input type="button" value="Thời gian" class="button_title_feature" style="border: 1px solid blue;" >
@@ -1010,56 +985,20 @@
                                 <option value="year">Hàng năm</option>
 
                             </select>
+                        <div id="div-add-date-time" >
+                        </div>
+                        <div id="div-date-time" >
                             
                             <span id="add-from-date" ></span>
                             <label id="label-time" style="color: black;margin-left: 10px;">Thời gian từ:</label> <br/>
-                            <!-- <input type="date" id="fromtDate" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br> -->
                             <input type="text" id="fromDate" class="fromDate time" name="fromDate" value="02-03-2012" placeholder="dd-mm-yyyy" ><br/> 
     
 
                             <label id="label-time" style="color: black;margin-left: 10px;">Thời gian đến:</label> <br/>
-                            <!-- <input type="date"  id="totDate" style="margin-left: 10px;margin-top: 2px;margin-bottom: 20px;box-shadow: 1px 1px 1px #888888; border:1px solid #9D9DA2;height: 30px;"><br> -->
                             <span id="add-to-date" ></span>
                             <input type="text" id="toDate" class="toDate time" name="toDate" value="04-03-2012" placeholder="dd-mm-yyyy" ><br/>
-                                 
+                        </div>
                         </div>  <!-- end div 'thời gian' -->
-
-                        <script>
-
-                              $(function() {
-                                $( "#fromDate" ).datepicker({
-                                  // showOn: "button",
-                                  // buttonImage: "{{ asset('public/img/calendar.gif') }}",
-                                  // buttonImageOnly: true,
-                                  // buttonText: "Chọn thời gian",
-
-                                  dateFormat: 'dd-mm-yy',
-                                  defaultDate: "+1w",
-                                  changeMonth: true,
-                                  changeYear: true,
-                                  onClose: function( selected) {
-                                    $( "#toDate" ).datepicker( "option", "minDate", selected);
-                                    $( "#toDate" ).datepicker( "option", "minMonth", selected);
-                                  }
-                                });
-
-                                $( "#toDate" ).datepicker({
-                                  // showOn: "button",
-                                  // buttonImage: "{{ asset('public/img/calendar.gif') }}",
-                                  // buttonImageOnly: true,
-                                  // buttonText: "Chọn thời gian",
-
-                                  dateFormat: 'dd-mm-yy',
-                                  defaultDate: "+1w",
-                                  changeMonth: true,
-                                  changeYear: true,
-                                  onClose: function( selected) {
-                                    $( "#fromDate" ).datepicker( "option", "maxDate", selected);
-                                    $( "#fromDate" ).datepicker( "option", "maxMonth", selected);
-                                  }
-                                });
-                              });
-                        </script>
 
 
 
@@ -1097,141 +1036,40 @@
                     <!-- start pws_example_mixed_content_right -->
                     <div class="pws_example_mixed_content_right" >
                         <div style="width: 100%;height: 7%;border: 1px solid blue;margin-bottom: 10px;padding-top: 7px;">
-                            <a class="button" id="plot" style="padding: 0px 15px;text-decoration: none;margin-left: 5px;">Plot</a>
+                            <!-- <a class="button" id="plot" style="padding: 0px 15px;text-decoration: none;margin-left: 5px;">Plot</a> -->
+                            <input type="button" class="button" id="plot" style="padding: 0px 15px;text-decoration: none;margin-left: 5px;" value="Tạo ảnh"></input>
                             <a class="button" id="reset" style="padding: 0px 15px;text-decoration: none;">Đặt lại</a>
 
                             <select class="custom_select_tag" id="option-time" style="margin-top: 7px;width: 150px;">
-                                <option value="">10 - 6 - 2012</option>
-                                <option value="">11 - 6 - 2012</option>
-                                <option value="">12 - 6 - 2012</option>
-                                <option value="">13 - 6 - 2012</option>
-                                <option value="">14 - 6 - 2012</option>
 
                             </select>
-                            <a class="button" id="animation" style="padding: 0px 15px;text-decoration: none;">Tạo animation</a>
-                            <a href="#dialog-add-shopping-card-box" class="dialog-window button" id="shopping-card" style="padding: 0px 15px;text-decoration: none;margin-left: 10px;">Thêm</a>
-                            <a href="#dialog-download-box" class="dialog-window button" id="download" style="padding: 0px 15px;text-decoration: none;">Tải về</a>
+                            <a class="button" id="create-animation" style="padding: 0px 15px;text-decoration: none;">Tạo ảnh động</a>
+
+
+                            @if (!Auth::guest())
+                                <a href="#dialog-add-shopping-card-box" class="dialog-window button" id="dialog-shopping-card" style="padding: 0px 15px;text-decoration: none;margin-left: 10px;">Thêm giỏ hàng</a>
+                            @endif
+                            
+
+                            <a href="#dialog-download-box" class="dialog-window button" id="dialog-download" style="padding: 0px 15px;text-decoration: none;">Tải về</a>
                         </div> <!-- end option -->
 
-                        <script type="text/javascript">
+                       
 
-                            $(document).ready(function(){
-                                $('#reset, #animation, #download, #shopping-card, #option-time').hide();
-                                // $('#reset').attr("disabled", true);
-                                // $('#reset').css('background-color', '#BDAFC7');
-                            });
-
-                            $('#plot').click(function() {
-                                $('#reset, #animation, #download, #shopping-card, #option-time').show();
-                                $('#plot').attr("disabled", true);
-                                $('#plot').css('background-color', '#BDAFC7');
-
-
-                                var variable = $("select[name=variable]").val();
-                                var typeResult = $("select[name=type-result]").val();
-                                var levelOption = $("select[name=level-option]").val();
-                                var typeMap = $("select[name=type-map]").val();
-                                var typeWind = 'NULL';
-                                var timeDate = $("select[name=time-date]").val();
-                                var fDate = $("#fromDate").val();
-                                var tDate = $("#toDate").val();
-                                var minlat = $("#minlat").val();
-                                var maxlat = $("#maxlat").val();
-                                var minlon = $("#minlon").val();
-                                var maxlon = $("#maxlon").val();
-
-                                fromDate = standardDate(fDate)
-                                toDate = standardDate(tDate)
-
-                                var dataString = variable + "," + typeResult + "," + typeMap + "," + timeDate + "," + fromDate + "," + toDate + "," + minlat + "," + minlon + "," + maxlat + "," + maxlon;
-
-                                console.log(dataString)
-
-                                $.ajax({
-                                    type: "POST",
-                                    url: "test",
-                                    dataType: 'json',
-                                    data: {
-                                        'variable' : variable,
-                                        'typeresult' : typeResult,
-                                        'typemap' : typeMap,
-                                        'typewind' : typeWind,
-                                        'typelevel' : levelOption,
-                                        'timeDate' : timeDate,
-                                        'fromDate' : fromDate,
-                                        'toDate' : toDate,
-                                        'minlat' : minlat,
-                                        'minlon' : minlon,
-                                        'maxlat' : maxlat,
-                                        'maxlon' : maxlon,
-                                    },
-                                    success: function(data){
-                                        // var mess = data.msg;
-                                        console.log(data);
-                                        // if(mess.search("plot is done.") != -1){
-                                        //     console.log("ok")
-                                        // }
-                                    }
-                                });
-                                
-                            });
-                            $('#reset').click(function() {
-                                $('#plot').css('background-color', '#844CAF');
-                                $('#reset, #animation, #download, #shopping-card, #option-time').hide();
-                                $('#plot').attr("disabled", false);
-                                
-                                
-                            });
-
-                            function standardDate(dates){
-                                list = dates.split('-');
-
-                                return list[2] + '-' + list[1] + '-' + list[0]; 
-                            }
-
-                        </script>
-
-                        <div style="width: 100%;height: 90%;;border: 1px solid blue;">
-                            <img nam src="{{ asset('public/img/plot-example.png') }}" width="100%" height="100%">
+                        <div style="width: 97.6%%;height: 90%;;border: 1px solid blue;padding: 10px">
+                            <img id="plot-result" src="{{ asset('public/img/plot-example.png') }}" width="100%" height="100%" >
+                            <span id="not-data" >Không có dữ liệu.</span>
                         </div>
                     </div> <!-- end pws_example_mixed_content_right -->
                     
-
-                    <script type="text/javascript">
-                        // $("#plot").click(function(){
-                            
-
-                    </script>
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     
                 </div>
             </div><!-- tabset0 -->
 
 
-        </div><!-- content -->
+        </span><!-- content -->
         <div class="footer">
-            &copy; 2016 - Copy right by DuongND
+            &copy; 2016 - Copy right by RSAM
         </div><!-- footer -->
 
 
@@ -1305,98 +1143,25 @@
             </form>
         </div><!-- end div logout-box -->
 
-        <!-- start div shopping-card -->    
-        <div id="dialog-shopping-card-box" class="dialog-shopping-card">
-            <p class="dialog_title"> Giỏ hàng</p> <br /><br />
-            <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
-            <div class="login-content" style="height: 85%; margin: 0 auto;">
-                <table class="responstable">
-                  <tbody>
-                      <tr>
-                        <th>orderId</th>
-                        <th>Thời gian</th>
-                        <th>Loại sản phẩm</span></th>
-                        <th>Tên sản phẩm</th>
-                        <th>Kích thước</th>
-                        <th>Đặt hàng</th>
-                      </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox"></td>
-                      </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox" ></td>
-                      </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox"></td>
-                      </tr>
-                      <tr>
-                        <td>1111</td>
-                        <td>2016-001 00:00</td>
-                        <td>MOD04</td>
-                        <td>MOD04.2016.278.hdf</td>
-                        <td>1Gb</td>
-                        <td><input type="checkbox"></td>
-                      </tr>
-                  
-                    </tbody>
-                </table>
-                <div style="float: right;margin-right: 30px;">
-                    <button class="" type="button" style="">Tích tất cả</button>
-                    <button class="" type="button" style="">Bỏ tích tất cả</button>
-                    <button class="" type="button" style="">Xóa giỏ hàng</button>
-                </div>
-                <button class="button submit-button" type="button" style="margin-top: 60px;margin-left: 0px;">Đặt hàng</button>
-            </div>
-        </div><!-- end div shopping-card -->
+        
 
         <!-- start div download-box -->
         <div id="dialog-download-box" class="dialog">
             <p class="dialog_title">Tải về</p> <br /><br />
             <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
-            <form method="post" id="form-reset-password" class="login-content"  role="form" >
-                <div style="width: 380px;height: 200px;overflow: auto;border: 1px solid blue;margin-bottom: 6px;">
-                    <input type="checkbox" style="width: 17px" ></input>
+            <form class="login-content" >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                
+                <div id="list-result-png" style="width: 380px;height: 200px;overflow: auto;border: 1px solid blue;margin-bottom: 6px;">
+                    <!-- <input type="checkbox" style="width: 17px" ></input>
                     <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.10.6.2012.png</label> <br/>
                     <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.11.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.12.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.13.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.14.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.15.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.16.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.17.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.18.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.19.6.2012.png</label> <br/>
-                    <input type="checkbox" style="width: 17px" ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.20.6.2012.png</label> <br/>
+                     -->
                 </div>
-                <input type="checkbox" style="width: 17px" id="select-all" ></input>
+                <input id="select-all-result-png" type="checkbox" style="width: 17px" id="select-all" ></input>
                 <label style="margin-left: 30px;margin-top: -25px;" >Chọn tất cả</label> <br/>
 
-                <button class="button submit-button" type="submit" style="margin-bottom: 40px;margin-top: 5px;" >Tải về</button>
+                <button id="download-png" class="button submit-button" type="button" style="margin-bottom: 40px;margin-top: 5px;" >Tải về</button>
                 
 
             </form>
@@ -1404,22 +1169,30 @@
 
         <!-- start div add-shopping-card-box -->
         <div id="dialog-add-shopping-card-box" class="dialog">
-            <p class="dialog_title">Đặt hàng</p> <br /><br />
+            <p class="dialog_title">Giỏ hàng</p> <br /><br />
             <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
-            <form method="post" id="form-reset-password" class="login-content"  role="form" >
-                <div style="width: 380px;overflow: auto;border: 1px solid blue;margin-bottom: 6px;">
-                    <input type="checkbox" style="width: 17px" checked ></input>
-                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.10.6.2012.nc</label> <br/>
+            <form class="login-content" >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" id="userId" value="{{ Auth::user()->id }}">
+                <div id="list-result-filename" style="width: 380px;height: 200px;overflow: auto;border: 1px solid blue;margin-bottom: 6px;">
+                    <!-- <input type="checkbox" style="width: 17px" ></input>
+                    <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.10.6.2012.png</label> <br/>
+                    <input type="checkbox" style="width: 17px" ></input>
+                     -->
                 </div>
+                <input id="select-all-result-filename" type="checkbox" style="width: 17px" id="select-all" ></input>
+                <label style="margin-left: 30px;margin-top: -25px;" >Chọn tất cả</label> <br/>
 
-                <button class="button submit-button" type="submit" style="margin-bottom: 40px;margin-top: 5px;" >Thêm vào giỏ hàng</button>
+                <button id="add-shopping-card" class="button submit-button" type="button" style="margin-bottom: 40px;margin-top: 5px;" >Thêm vào giỏ</button>
                 
 
             </form>
         </div> <!-- end div add-shopping-card-box -->
 
 
+        @yield("shoppingcard")
 
+        @yield("profile_and_view_order")
 
 
 
@@ -1449,6 +1222,9 @@
         <script type="text/javascript" src="{{ asset('public/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/jquery.pwstabs.js') }}"></script>
         <script type="text/javascript" src="{{ asset('public/js/dialog.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/mydatepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/meteo.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/meteo-input.js') }}"></script>
         
 
         <script  type="text/javascript">

@@ -66,11 +66,23 @@ Route::get('admin/nguoi-dung', function(){
 Route::get('admin/don-hang-yeu-cau', function(){
 	return view('admins.donhangyeucau');
 });
+
 Route::post('rs_result', 'DataController@result_data');
 Route::post('download_txt', 'MetadatadownloadController@download_txt');
 Route::post('download_png', 'MetadatadownloadController@download_png');
 Route::post('shopping-card', 'ShoppingCardController@shopping_card');
 
 
-Route::get('/test', 'PlotController@getRequest');
-Route::post('/test', 'PlotController@postRequest');
+Route::get('/test', 'MeteoController@getRequest');
+Route::post('/plot-data', 'MeteoController@postRequest');
+
+// Route::get('home/meteo/download-png', 'MeteoController@getDownloadPNG');
+Route::post('home/meteo/download-png', 'MeteoController@postDownloadPNG');
+
+Route::post('home/meteo/create-animation', 'MeteoController@postCreateGIF');
+
+Route::get('home/meteo/shopping-card', 'MeteoController@getShoppingCard');
+
+Route::post('home/meteo/add-shopping-card', 'MeteoController@postAddShoppingCard');
+
+Route::get('home/shopping-card', 'ShoppingCardController@shopping_card');

@@ -23,23 +23,18 @@ class ShoppingCardController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function shopping_card(ShoppingCardResquest $resquest)
+	public function shopping_card()
     {
-        $name_product= $resquest->name_product;
-        $size_product=$resquest->size_product;
-        $time_product=$resquest->time_product;
-        $type_product=$resquest->type_product;
-        $check_element=$resquest->check_element;
-        if ($check_element==$name_product) {
-            $insert = DB::table('user_shopping_card')->insert(
-                ['datetime' => $time_product,  'size' => $size_product, 'name_product' => $name_product,'type_product' => $type_product,'email'=>'hoangduongk57cb@gmail.com']
-            );
-            $select_data=DB::table('user_shopping_card')->where('email','hoangduongk57cb@gmail.com')->get();
-            return view('rs_result')->with('shopping_data',$select_data);
-        }
 
+        $hello='hello';
+        $shopping_card_data=DB::table('user_shopping_card')->Paginate(7);
+        return view('users.shoppingcard')-> with('shopping_card_data',$shopping_card_data)->with('hello',$hello);
 
 	}
+
+    public function profile(){
+        return view('users.order_manage');
+    }
 
 	/**
 	 * Store a newly created resource in storage.

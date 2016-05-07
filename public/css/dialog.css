@@ -106,7 +106,7 @@ a, a:visited, a:active{
     cursor: pointer;
     background-color: #844CAF;
     text-decoration: none;  
-    color: #fff5c3;
+    color: #fff;
 }
 .button:hover{
     border: 1px solid #DCDCDC;

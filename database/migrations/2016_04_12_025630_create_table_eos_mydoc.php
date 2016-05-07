@@ -16,7 +16,7 @@ class CreateTableEosMydoc extends Migration {
             $table->increments('id');
             $table->string('filename',100);
             $table->string('path',100);
-            $table->string('corner');
+            $table->string('conner');
             $table->integer('collection');
             $table->string('size',50);
             $table->date('aqstime');
@@ -25,7 +25,7 @@ class CreateTableEosMydoc extends Migration {
             $table->double('north');
             $table->double('south');
             $table->double('west');
-
+            $table->boolean('state');
         });
     }
 

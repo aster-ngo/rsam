@@ -16,16 +16,16 @@ class CreateTableEosMod14 extends Migration {
             $table->increments('id');
             $table->string('filename',100);
             $table->string('path',100);
-            $table->string('corner');
+            $table->string('conner');
             $table->integer('collection');
             $table->string('size',50);
             $table->date('aqstime');
             $table->date('updatetime');
             $table->double('east');
-            $table->double('nouth');
+            $table->double('north');
             $table->double('south');
             $table->double('west');
-
+            $table->boolean('state');
         });
     }
 

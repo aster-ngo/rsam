@@ -82,3 +82,32 @@ h1 {
 h1 span {
   color: #167F92;
 }*/
+
+.download_product{
+    width: 900px;
+    height: auto;
+    background-color: #ffffff;
+    margin-top: -20px;
+    margin:auto;
+    border: 1px solid #000000;
+    margin-bottom: 50px;
+}
+.table_download_product{
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.table_download_product tr td{
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+    border-left: 1px hidden;
+    border-right: 1px hidden;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    width: 150px;
+    height: 30px;
+    padding-top: 10px;
+
+}

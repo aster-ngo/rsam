@@ -4,11 +4,11 @@ use App\Http\Requests\Request;
 
 class ShoppingCardResquest extends Request {
 
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
     public function authorize()
     {
         return true;
@@ -21,12 +21,17 @@ class ShoppingCardResquest extends Request {
      */
     public function rules()
     {
+
         return [
             'type_product'=> 'required',
             'name_product'=>'required',
             'size_product'=>'required',
             'time_product'=>'required',
             'check_element'=>'required',
+            'count'=>'required',
+            'id_product'=>'required',
+
+
         ];
     }
 

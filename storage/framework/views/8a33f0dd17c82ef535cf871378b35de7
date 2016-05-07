@@ -54,12 +54,209 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNER -->
-    
+    <div class="page-header-inner">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+            <!-- <img src="../assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/> -->
+            </a>
+            <div class="menu-toggler sidebar-toggler hide">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+        </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+
+                <li class="dropdown dropdown-user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img alt="" class="img-circle" src="../assets/admin/layout/img/avatar3_small.jpg"/>
+                    <span class="username username-hide-on-mobile">
+                    Hoàng Dương </span>
+                    <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a href="extra_profile.html">
+                            <i class="icon-user"></i> Thông tin cá nhân</a>
+                        </li>
+
+                        <li class="divider">
+                        </li>
+
+                        <li>
+
+                            <a href="login.html">
+                            <i class="icon-key"></i> Đăng xuất </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+                <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                <li class="dropdown dropdown-quick-sidebar-toggler">
+                    <a href="javascript:;" class="dropdown-toggle">
+                    <i class="icon-logout"></i>
+                    </a>
+                </li>
+                <!-- END QUICK SIDEBAR TOGGLER -->
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
 <div class="clearfix">
 </div>
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
-    
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            <!-- BEGIN SIDEBAR MENU -->
+            <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+            <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+            <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+            <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+            <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+            <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+            <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                <li class="sidebar-toggler-wrapper">
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    <div class="sidebar-toggler">
+                    </div>
+                    <!-- END SIDEBAR TOGGLER BUTTON -->
+                </li>
+                <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                <li class="sidebar-search-wrapper">
+                    <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                    <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                    <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                    <form class="sidebar-search " action="extra_search.html" method="POST">
+                        <a href="javascript:;" class="remove">
+                            <i class="icon-close"></i>
+                        </a>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                            <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                </li>
+                <li class="start">
+                    <a href="index.html">
+                        <i class="fa fa-users"></i>
+                        <span class="title">Trang chủ</span>
+                        <span class="selected"></span>
+                        <span class="arrow open"></span>
+                    </a>
+                </li>
+
+
+                <li class="active open">
+                    <a href="javascript:;">
+                        <i class="fa fa-bar-chart"></i>
+                        <span class="title">Quản lý dữ liệu</span>
+                        <span class="selected"></span>
+                        <span class="arrow open"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="vien_tham.html">
+                                <i class="fa fa-user"></i>
+                                Viễn thám</a>
+                        </li>
+                        <li>
+                            <a href="khi_tuong.html">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Khí tượng</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-bar-chart"></i>
+                        <span class="title">Quản lý hệ thống</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="vaitro.html">
+                                <i class="fa fa-user"></i>
+                                Vai trò</a>
+                        </li>
+                        <li>
+                            <a href="quyenhan.html">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Quyền hạn</a>
+                        </li>
+                        <li>
+                            <a href="nguoi_dung.html">
+                                <i class="fa fa-money"></i>
+                                Người dùng</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-bar-chart"></i>
+                        <span class="title">Quản lý đặt hàng</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="don_hang_yeu_cau.html">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Đơn hàng yêu cầu</a>
+                        </li>
+                        <li>
+                            <a href="dang_ky_an.html">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Xử lý đơn hàng đã duyệt</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-bar-chart"></i>
+                        <span class="title">Thống kê</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="nguoi_an.html">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Dữ liệu có sẵn</a>
+                        </li>
+                        <li>
+                            <a href="dang_ky_an.html">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Dữ liệu đã mất</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
+            <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -360,4 +557,3 @@ Demo.init(); // init demo features
 </body>
 <!-- END BODY -->
 </html>
-<?php echo $__env->make('admins.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

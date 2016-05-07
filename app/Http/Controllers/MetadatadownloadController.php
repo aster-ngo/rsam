@@ -27,7 +27,7 @@ class MetadatadownloadController extends Controller {
 	{
         $name_product= $request->metadata_name_product;
         $name_product_txt=$name_product.".txt";
-        $filename="public/metadata/".$name_product_txt;
+        $filename="FTPSite/RSAM/org/remote sensing/SatOrgMOD04/2015/".$name_product."/".$name_product_txt;
         $fp = fopen($filename, "rb");
 
         header("Content-type: application/octet-stream");
@@ -40,7 +40,7 @@ class MetadatadownloadController extends Controller {
     {
         $name_product= $request->metadata_name_product;
         $name_product_png=$name_product.".png";
-        $filename="public/img/product/".$name_product_png;
+        $filename="FTPSite/RSAM/org/remote sensing/SatOrgMOD04/2015/".$name_product."/".$name_product_png;
         $fp = fopen($filename, "rb");
 
         header("Content-type: application/octet-stream");

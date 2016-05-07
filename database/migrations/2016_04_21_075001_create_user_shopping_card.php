@@ -14,11 +14,12 @@ class CreateUserShoppingCard extends Migration {
     {
         Schema::create('user_shopping_card', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('datetime');
+            $table->integer('userId');
             $table->string('type_product');
-            $table->string('size');
+            // $table->string('type_data');
             $table->string('name_product');
-            $table->foreign('id')->references('id')->on('users');
+            $table->string('size');
+            $table->date('datetime'); // time add shopping card.
         });
     }
 

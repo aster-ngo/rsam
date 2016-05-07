@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     $('a.dialog-window').click(function() {
         // console.log("login");
         //lấy giá trị thuộc tính href - chính là phần tử "#dialog-box"
@@ -50,18 +51,27 @@ $(document).ready(function() {
     // $(document).on('click', "a.close, #over", function() { 
 
     $('a.close').click(function() {
-
+        
         $('.dialog').hide();  
         $('label.error').remove(); 
-         $('#over, .dialog, .dialog-shopping-card').fadeOut(300);
+        $('#over, .dialog, .dialog-shopping-card').fadeOut(300);
+
+        $('#email_login, #password_login').val(""); //dialog login
+        $('#email_register, #name_register, #password_register, #password_confirmation_register').val(""); // dialog register
+        $('#email_reset_password').val(""); //dialog reset password
+
+        $('#list-result-png').empty(); // dialog download
+        $('#list-result-filename').empty(); // dialog add shopping card 
+        $('#select-all-result-png').removeAttr("checked"); // remove check all in download
+        $('#select-all-result-filename').removeAttr("checked"); // remove check all in add shopping card
     });
 
 
     $(document).on('a.close, #over', function() { 
         $('#over, .dialog, .dialog-shopping-card').fadeOut(300 , function() {
+            console.log("over");
             $('#over').remove();  
             $('label.error').remove(); 
-            $('#name, #email, #password, #password_confirmation').text = "";
         }); 
 
         return false;
