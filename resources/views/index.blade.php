@@ -1173,7 +1173,10 @@
             <a href="#" class="close"><img src="{{ asset('public/img/close.png') }}" class="img-close" title="Close Window" alt="Close" /></a>
             <form class="login-content" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" id="userId" value="{{ Auth::user()->id }}">
+                @if (!Auth::guest())
+                    <input type="hidden" id="userId" value="{{ Auth::user()->id }}">
+                @endif
+
                 <div id="list-result-filename" style="width: 380px;height: 200px;overflow: auto;border: 1px solid blue;margin-bottom: 6px;">
                     <!-- <input type="checkbox" style="width: 17px" ></input>
                     <label style="margin-left: 30px;margin-top: -25px;" >nhietdo.10.6.2012.png</label> <br/>
